@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { COMPANY_NAME, SERVICE_NAME } from "@/lib/company";
 
 const events = [
   { name: "Festival de Cannes", logo: "/logos/events/festival-cannes.svg", city: "Cannes" },
@@ -48,6 +49,9 @@ export function EventsMarquee() {
           </div>
           <p className="text-gray-500 text-sm font-light">
             Cannes &middot; Monaco &middot; Paris — Les plus grands salons, festivals et rendez-vous internationaux
+          </p>
+          <p className="text-gray-600 text-xs mt-3">
+            Marques citées appartiennent à leurs propriétaires. {SERVICE_NAME} et {COMPANY_NAME} n&apos;y sont pas affiliés.
           </p>
         </div>
       </div>

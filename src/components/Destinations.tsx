@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
@@ -34,7 +35,7 @@ export function Destinations() {
             <span className="text-gold-500 tracking-[0.2em] uppercase text-xs font-medium">Nos Destinations</span>
             <div className="h-[1px] w-12 bg-gold-500"></div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-serif mb-6">Le Triangle d'Or du <span className="text-gold-500 italic">Luxe</span></h2>
+          <h2 className="text-3xl md:text-4xl font-serif mb-6">Le Triangle d&apos;Or du <span className="text-gold-500 italic">Luxe</span></h2>
           <p className="text-gray-400 font-light text-lg">
             Présents sur les places les plus prestigieuses, nous accompagnons vos invités VIC lors des plus grands événements.
           </p>
@@ -50,10 +51,12 @@ export function Destinations() {
               transition={{ duration: 0.6, delay: index * 0.15 }}
               className="group relative h-[460px] overflow-hidden rounded-sm border border-white/10 cursor-pointer"
             >
-              <img
+              <Image
                 src={dest.image}
                 alt={dest.name}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
 

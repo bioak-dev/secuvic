@@ -35,7 +35,7 @@ export function ClientDashboard({ isDemo }: ClientDashboardProps) {
   const [loading, setLoading] = useState(true);
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
 
-  const fetchTrips = useCallback(async () => {
+  const loadProductionTrips = useCallback(async () => {
     const res = await fetch("/api/trips");
     if (!res.ok) return;
     const data = await res.json();
@@ -46,23 +46,31 @@ export function ClientDashboard({ isDemo }: ClientDashboardProps) {
   }, []);
 
   useEffect(() => {
-    if (isDemo) {
-      const updateDemo = () => {
-        const trip = getDemoTrip();
-        setTrips([trip]);
-        setSelectedTripId((prev) => prev ?? trip.id);
-        setLastUpdate(new Date());
-        setLoading(false);
-      };
-      updateDemo();
-      const interval = setInterval(updateDemo, 1000);
-      return () => clearInterval(interval);
-    }
+    if (!isDemo) return;
 
-    fetchTrips();
-    const interval = setInterval(fetchTrips, 5000);
+    const tick = () => {
+      const trip = getDemoTrip();
+      setTrips([trip]);
+      setSelectedTripId((prev) => prev ?? trip.id);
+      setLastUpdate(new Date());
+      setLoading(false);
+    };
+
+    tick();
+    const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
-  }, [isDemo, fetchTrips]);
+  }, [isDemo]);
+
+  useEffect(() => {
+    if (isDemo) return;
+
+    const timeout = setTimeout(() => loadProductionTrips(), 0);
+    const interval = setInterval(loadProductionTrips, 5000);
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(interval);
+    };
+  }, [isDemo, loadProductionTrips]);
 
   useEffect(() => {
     if (isDemo || !isSupabaseConfigured() || !selectedTripId) return;
@@ -126,9 +134,9 @@ export function ClientDashboard({ isDemo }: ClientDashboardProps) {
           )}
           {!isDemo && (
             <button
-              onClick={fetchTrips}
+              onClick={loadProductionTrips}
               className="p-2 text-gray-400 hover:text-gold-500 transition-colors"
-              title="Actualiser"
+              aria-label="Actualiser les positions"
             >
               <RefreshCw size={18} />
             </button>

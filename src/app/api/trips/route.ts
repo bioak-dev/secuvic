@@ -1,12 +1,16 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { getDemoTrips } from "@/lib/demo-tracking";
+import { isDemoAllowed } from "@/lib/validation";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const isDemo = searchParams.get("demo") === "true";
 
   if (isDemo) {
+    if (!isDemoAllowed()) {
+      return NextResponse.json({ error: "Mode démo désactivé" }, { status: 403 });
+    }
     return NextResponse.json({ trips: getDemoTrips() });
   }
 
@@ -14,7 +18,7 @@ export async function GET(request: Request) {
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
-    return NextResponse.json({ trips: getDemoTrips(), demo: true });
+    return NextResponse.json({ error: "Service non configuré" }, { status: 503 });
   }
 
   const supabase = await createClient();

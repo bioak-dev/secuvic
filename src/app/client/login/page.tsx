@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { Shield, Eye } from "lucide-react";
+
+const DEMO_ENABLED = process.env.NEXT_PUBLIC_ALLOW_DEMO_MODE === "true";
 
 export default function ClientLoginPage() {
   const router = useRouter();
@@ -19,7 +22,7 @@ export default function ClientLoginPage() {
     setError("");
 
     if (!isSupabaseConfigured()) {
-      setError("Authentification non configurée. Utilisez le mode démo.");
+      setError("Authentification non configurée.");
       setLoading(false);
       return;
     }
@@ -40,7 +43,11 @@ export default function ClientLoginPage() {
   };
 
   const handleDemo = () => {
-    document.cookie = "secuvic_demo=true; path=/; max-age=86400; SameSite=Lax";
+    if (!DEMO_ENABLED) {
+      setError("Le mode démo n'est pas disponible.");
+      return;
+    }
+    document.cookie = `secuvic_demo=true; path=/; max-age=3600; SameSite=Lax${window.location.protocol === "https:" ? "; Secure" : ""}`;
     router.push("/client/dashboard");
   };
 
@@ -69,8 +76,9 @@ export default function ClientLoginPage() {
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="text-xs uppercase tracking-wider text-gray-400">Email</label>
+              <label htmlFor="client-email" className="text-xs uppercase tracking-wider text-gray-400">Email</label>
               <input
+                id="client-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -79,8 +87,9 @@ export default function ClientLoginPage() {
               />
             </div>
             <div>
-              <label className="text-xs uppercase tracking-wider text-gray-400">Mot de passe</label>
+              <label htmlFor="client-password" className="text-xs uppercase tracking-wider text-gray-400">Mot de passe</label>
               <input
+                id="client-password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -100,26 +109,30 @@ export default function ClientLoginPage() {
             </button>
           </form>
 
-          <div className="relative my-6">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/10"></div>
-            </div>
-            <div className="relative flex justify-center text-xs uppercase tracking-wider">
-              <span className="bg-zinc-950 px-3 text-gray-500">ou</span>
-            </div>
-          </div>
+          {DEMO_ENABLED && (
+            <>
+              <div className="relative my-6">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-white/10"></div>
+                </div>
+                <div className="relative flex justify-center text-xs uppercase tracking-wider">
+                  <span className="bg-zinc-950 px-3 text-gray-500">ou</span>
+                </div>
+              </div>
 
-          <button
-            onClick={handleDemo}
-            className="w-full flex items-center justify-center gap-2 border border-white/20 text-gray-300 uppercase tracking-wider text-sm py-3 hover:border-gold-500/50 hover:text-gold-500 transition-colors"
-          >
-            <Eye size={16} />
-            Voir la démo (A8 · Cannes → Monaco)
-          </button>
+              <button
+                onClick={handleDemo}
+                className="w-full flex items-center justify-center gap-2 border border-white/20 text-gray-300 uppercase tracking-wider text-sm py-3 hover:border-gold-500/50 hover:text-gold-500 transition-colors"
+              >
+                <Eye size={16} />
+                Voir la démo (A8 · Cannes → Monaco)
+              </button>
+            </>
+          )}
         </div>
 
         <p className="text-center text-xs text-gray-600 mt-6">
-          <a href="/" className="hover:text-gold-500 transition-colors">← Retour au site</a>
+          <Link href="/" className="hover:text-gold-500 transition-colors">← Retour au site</Link>
         </p>
       </div>
     </div>

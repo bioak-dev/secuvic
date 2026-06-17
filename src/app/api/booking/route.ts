@@ -1,5 +1,8 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { escapeHtml } from "@/lib/escape-html";
+import { validateBookingInput } from "@/lib/validation";
+import { COMPANY_NAME, SERVICE_NAME, SERVICE_TAGLINE } from "@/lib/company";
 
 const serviceLabels: Record<string, string> = {
   "mise-a-disposition": "Mise à disposition (Heure/Jour)",
@@ -10,17 +13,16 @@ const serviceLabels: Record<string, string> = {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, phone, service, date, location, details } = body;
+    const validation = validateBookingInput(body);
 
-    if (!name || !email || !phone || !service || !date || !location || !details) {
-      return NextResponse.json(
-        { error: "Tous les champs sont requis." },
-        { status: 400 }
-      );
+    if ("error" in validation) {
+      return NextResponse.json({ error: validation.error }, { status: 400 });
     }
 
+    const { name, email, phone, service, date, location, details } = validation.data;
+
     const contactEmail = process.env.CONTACT_EMAIL;
-    const fromEmail = process.env.RESEND_FROM_EMAIL || "SecuVIC <onboarding@resend.dev>";
+    const fromEmail = process.env.RESEND_FROM_EMAIL || `${SERVICE_NAME} <onboarding@resend.dev>`;
 
     if (!process.env.RESEND_API_KEY || !contactEmail) {
       return NextResponse.json(
@@ -30,34 +32,39 @@ export async function POST(request: Request) {
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
-
     const serviceLabel = serviceLabels[service] || service;
+
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(phone);
+    const safeLocation = escapeHtml(location);
+    const safeDetails = escapeHtml(details);
+    const safeDate = escapeHtml(date);
+    const safeService = escapeHtml(serviceLabel);
 
     const { error } = await resend.emails.send({
       from: fromEmail,
       to: contactEmail,
       replyTo: email,
-      subject: `[SecuVIC] Nouvelle demande — ${name} — ${location}`,
+      subject: `[${SERVICE_NAME}] Nouvelle demande — ${name} — ${location}`,
       html: `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; background: #000; color: #fff; padding: 40px;">
-          <h1 style="color: #d4af37; font-size: 24px; margin-bottom: 8px;">Secu<span style="color: #d4af37">VIC</span></h1>
+          <h1 style="color: #d4af37; font-size: 24px; margin-bottom: 8px;">${SERVICE_NAME}</h1>
+          <p style="color: #888; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;">Service de ${COMPANY_NAME}</p>
           <p style="color: #888; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 32px;">Nouvelle demande de réservation</p>
-          
           <table style="width: 100%; border-collapse: collapse;">
-            <tr><td style="padding: 12px 0; color: #d4af37; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; width: 140px;">Nom</td><td style="padding: 12px 0; color: #fff;">${name}</td></tr>
-            <tr><td style="padding: 12px 0; color: #d4af37; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Email</td><td style="padding: 12px 0; color: #fff;"><a href="mailto:${email}" style="color: #d4af37;">${email}</a></td></tr>
-            <tr><td style="padding: 12px 0; color: #d4af37; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Téléphone</td><td style="padding: 12px 0; color: #fff;"><a href="tel:${phone}" style="color: #d4af37;">${phone}</a></td></tr>
-            <tr><td style="padding: 12px 0; color: #d4af37; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Service</td><td style="padding: 12px 0; color: #fff;">${serviceLabel}</td></tr>
-            <tr><td style="padding: 12px 0; color: #d4af37; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Date</td><td style="padding: 12px 0; color: #fff;">${date}</td></tr>
-            <tr><td style="padding: 12px 0; color: #d4af37; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Lieu</td><td style="padding: 12px 0; color: #fff;">${location}</td></tr>
+            <tr><td style="padding: 12px 0; color: #d4af37; font-size: 11px; text-transform: uppercase; width: 140px;">Nom</td><td style="padding: 12px 0; color: #fff;">${safeName}</td></tr>
+            <tr><td style="padding: 12px 0; color: #d4af37; font-size: 11px; text-transform: uppercase;">Email</td><td style="padding: 12px 0; color: #fff;">${safeEmail}</td></tr>
+            <tr><td style="padding: 12px 0; color: #d4af37; font-size: 11px; text-transform: uppercase;">Téléphone</td><td style="padding: 12px 0; color: #fff;">${safePhone}</td></tr>
+            <tr><td style="padding: 12px 0; color: #d4af37; font-size: 11px; text-transform: uppercase;">Service</td><td style="padding: 12px 0; color: #fff;">${safeService}</td></tr>
+            <tr><td style="padding: 12px 0; color: #d4af37; font-size: 11px; text-transform: uppercase;">Date</td><td style="padding: 12px 0; color: #fff;">${safeDate}</td></tr>
+            <tr><td style="padding: 12px 0; color: #d4af37; font-size: 11px; text-transform: uppercase;">Lieu</td><td style="padding: 12px 0; color: #fff;">${safeLocation}</td></tr>
           </table>
-
           <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #333;">
-            <p style="color: #d4af37; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">Détails</p>
-            <p style="color: #ccc; line-height: 1.6; white-space: pre-wrap;">${details}</p>
+            <p style="color: #d4af37; font-size: 11px; text-transform: uppercase; margin-bottom: 12px;">Détails</p>
+            <p style="color: #ccc; line-height: 1.6; white-space: pre-wrap;">${safeDetails}</p>
           </div>
-
-          <p style="color: #555; font-size: 11px; margin-top: 40px; text-align: center;">SecuVIC — Sécurité &amp; Prestige</p>
+          <p style="color: #555; font-size: 11px; margin-top: 40px; text-align: center;">${SERVICE_NAME} — ${SERVICE_TAGLINE} · ${COMPANY_NAME}</p>
         </div>
       `,
     });

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Users, Briefcase, Wifi, Coffee } from "lucide-react";
 
@@ -26,13 +27,13 @@ export function Fleet() {
               Mercedes <br /><span className="italic text-gray-300">Classe V Noir</span>
             </h2>
             <p className="text-gray-400 font-light text-lg mb-8">
-              L'excellence de l'espace et du raffinement. Le Mercedes Classe V est le choix par excellence pour le transport de petits groupes VIC, offrant un confort inégalé digne d'un salon VIP mobile.
+              L&apos;excellence de l&apos;espace et du raffinement. Le Mercedes Classe V est le choix par excellence pour le transport de petits groupes VIC, offrant un confort inégalé digne d&apos;un salon VIP mobile.
             </p>
             
             <div className="grid grid-cols-2 gap-6 mb-10">
               <div className="flex items-center gap-3">
                 <Users className="w-5 h-5 text-gold-500" />
-                <span className="text-gray-300 text-sm">Jusqu'à 7 passagers</span>
+                <span className="text-gray-300 text-sm">Jusqu&apos;à 7 passagers</span>
               </div>
               <div className="flex items-center gap-3">
                 <Briefcase className="w-5 h-5 text-gold-500" />
@@ -61,10 +62,12 @@ export function Fleet() {
             className="w-full lg:w-1/2 relative"
           >
             <div className="aspect-[4/3] rounded-sm overflow-hidden relative border border-white/10">
-              <img 
-                src="/images/exterior-v-class.png" 
-                alt="Mercedes Classe V Noir — vue extérieure" 
-                className="w-full h-full object-cover"
+              <Image
+                src="/images/exterior-v-class.png"
+                alt="Mercedes Classe V Noir — vue extérieure"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
             </div>

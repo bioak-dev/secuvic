@@ -108,11 +108,11 @@ export function Services() {
                 <span className="text-gold-500 tracking-[0.2em] uppercase text-xs font-medium">Notre engagement sécurité</span>
               </div>
               <h3 className="text-2xl md:text-3xl font-serif mb-4 leading-tight">
-                Vos invités VIC entre les mains <span className="text-gold-500 italic">d'experts</span>
+                Vos invités VIC entre les mains <span className="text-gold-500 italic">d&apos;experts</span>
               </h3>
               <p className="text-gray-400 font-light leading-relaxed mb-6">
                 Au-delà du confort, SecuVIC place la sécurité au centre de chaque mission.
-                De la planification de l'itinéraire à la prise en charge, chaque détail est anticipé
+                De la planification de l&apos;itinéraire à la prise en charge, chaque détail est anticipé
                 pour garantir la tranquillité et la protection de vos passagers.
               </p>
               <a

@@ -34,20 +34,20 @@ create index if not exists idx_vehicle_locations_updated_at on vehicle_locations
 alter table trips enable row level security;
 alter table vehicle_locations enable row level security;
 
+-- Lecture : clients voient uniquement leurs trajets
 create policy "Clients voient leurs trajets"
   on trips for select
   using (auth.uid() = client_id);
 
+-- Lecture : clients voient les positions de leurs trajets uniquement
 create policy "Clients voient les positions de leurs trajets"
   on vehicle_locations for select
   using (
     trip_id in (select id from trips where client_id = auth.uid())
   );
 
--- Insertion positions via service role (API chauffeur)
-create policy "Service insère les positions"
-  on vehicle_locations for insert
-  with check (true);
+-- IMPORTANT : pas de policy INSERT pour anon/authenticated
+-- Les insertions GPS se font uniquement via service_role (API chauffeur)
 
 -- Activer Realtime sur vehicle_locations
 alter publication supabase_realtime add table vehicle_locations;

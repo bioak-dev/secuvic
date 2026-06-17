@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { ContactLinks } from "@/components/ContactLinks";
 
 interface FormData {
@@ -12,6 +13,7 @@ interface FormData {
   date: string;
   location: string;
   details: string;
+  consent: boolean;
 }
 
 const initialForm: FormData = {
@@ -22,6 +24,7 @@ const initialForm: FormData = {
   date: "",
   location: "",
   details: "",
+  consent: false,
 };
 
 export function BookingForm() {
@@ -30,12 +33,16 @@ export function BookingForm() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  const update = (field: keyof FormData, value: string) => {
+  const update = (field: keyof FormData, value: string | boolean) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!form.consent) {
+      setError("Veuillez accepter la politique de confidentialité.");
+      return;
+    }
     setIsSubmitting(true);
     setError("");
 
@@ -43,7 +50,7 @@ export function BookingForm() {
       const res = await fetch("/api/booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, consent: true }),
       });
 
       if (!res.ok) {
@@ -75,7 +82,7 @@ export function BookingForm() {
           </div>
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -95,10 +102,12 @@ export function BookingForm() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-wider text-gray-400">Prénom & Nom</label>
+                  <label htmlFor="booking-name" className="text-xs uppercase tracking-wider text-gray-400">Prénom & Nom</label>
                   <input
+                    id="booking-name"
                     required
                     type="text"
+                    maxLength={100}
                     value={form.name}
                     onChange={(e) => update("name", e.target.value)}
                     className="w-full bg-zinc-900 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-gold-500 transition-colors"
@@ -106,10 +115,12 @@ export function BookingForm() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-wider text-gray-400">Email</label>
+                  <label htmlFor="booking-email" className="text-xs uppercase tracking-wider text-gray-400">Email</label>
                   <input
+                    id="booking-email"
                     required
                     type="email"
+                    maxLength={254}
                     value={form.email}
                     onChange={(e) => update("email", e.target.value)}
                     className="w-full bg-zinc-900 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-gold-500 transition-colors"
@@ -120,10 +131,12 @@ export function BookingForm() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-wider text-gray-400">Téléphone</label>
+                  <label htmlFor="booking-phone" className="text-xs uppercase tracking-wider text-gray-400">Téléphone</label>
                   <input
+                    id="booking-phone"
                     required
                     type="tel"
+                    maxLength={20}
                     value={form.phone}
                     onChange={(e) => update("phone", e.target.value)}
                     className="w-full bg-zinc-900 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-gold-500 transition-colors"
@@ -131,8 +144,9 @@ export function BookingForm() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-wider text-gray-400">Type de Service</label>
+                  <label htmlFor="booking-service" className="text-xs uppercase tracking-wider text-gray-400">Type de Service</label>
                   <select
+                    id="booking-service"
                     required
                     value={form.service}
                     onChange={(e) => update("service", e.target.value)}
@@ -147,8 +161,9 @@ export function BookingForm() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-wider text-gray-400">Date souhaitée</label>
+                  <label htmlFor="booking-date" className="text-xs uppercase tracking-wider text-gray-400">Date souhaitée</label>
                   <input
+                    id="booking-date"
                     required
                     type="date"
                     value={form.date}
@@ -157,10 +172,12 @@ export function BookingForm() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-wider text-gray-400">Lieu (Cannes, Monaco, Paris...)</label>
+                  <label htmlFor="booking-location" className="text-xs uppercase tracking-wider text-gray-400">Lieu (Cannes, Monaco, Paris...)</label>
                   <input
+                    id="booking-location"
                     required
                     type="text"
+                    maxLength={200}
                     value={form.location}
                     onChange={(e) => update("location", e.target.value)}
                     className="w-full bg-zinc-900 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-gold-500 transition-colors"
@@ -170,23 +187,41 @@ export function BookingForm() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs uppercase tracking-wider text-gray-400">Détails de la demande (Passagers, Bagages, Besoins VIC...)</label>
+                <label htmlFor="booking-details" className="text-xs uppercase tracking-wider text-gray-400">Détails de la demande</label>
                 <textarea
+                  id="booking-details"
                   required
                   rows={4}
+                  maxLength={2000}
                   value={form.details}
                   onChange={(e) => update("details", e.target.value)}
                   className="w-full bg-zinc-900 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-gold-500 transition-colors resize-none"
-                  placeholder="Précisez les détails de votre demande..."
+                  placeholder="Passagers, bagages, besoins VIC..."
                 />
               </div>
+
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={form.consent}
+                  onChange={(e) => update("consent", e.target.checked)}
+                  className="mt-1 accent-gold-500"
+                  required
+                />
+                <span className="text-xs text-gray-400 leading-relaxed">
+                  J&apos;accepte que mes données soient traitées conformément à la{" "}
+                  <Link href="/politique-confidentialite" className="text-gold-500 hover:underline">
+                    politique de confidentialité
+                  </Link>.
+                </span>
+              </label>
 
               {error && (
                 <p className="text-red-400 text-sm text-center">{error}</p>
               )}
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 disabled={isSubmitting}
                 className="w-full bg-gold-500 text-black uppercase tracking-widest font-medium py-4 hover:bg-gold-400 transition-colors disabled:opacity-70 flex items-center justify-center gap-2"
               >

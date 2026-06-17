@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { createClient as createServerClient } from "@/lib/supabase/server";
 import { getDemoTrip } from "@/lib/demo-tracking";
+import { isDemoAllowed } from "@/lib/validation";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -8,6 +10,9 @@ export async function GET(request: Request) {
   const isDemo = searchParams.get("demo") === "true";
 
   if (isDemo || tripId === "demo-cannes-monaco") {
+    if (!isDemoAllowed()) {
+      return NextResponse.json({ error: "Mode démo désactivé" }, { status: 403 });
+    }
     const trip = getDemoTrip();
     return NextResponse.json({ location: trip.location });
   }
@@ -17,13 +22,29 @@ export async function GET(request: Request) {
   }
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
     return NextResponse.json({ error: "Base de données non configurée" }, { status: 500 });
   }
 
-  const supabase = createClient(supabaseUrl, supabaseKey);
+  const supabase = await createServerClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json({ error: "Non authentifié" }, { status: 401 });
+  }
+
+  const { data: trip } = await supabase
+    .from("trips")
+    .select("id")
+    .eq("id", tripId)
+    .eq("client_id", user.id)
+    .single();
+
+  if (!trip) {
+    return NextResponse.json({ error: "Accès refusé" }, { status: 403 });
+  }
 
   const { data, error } = await supabase
     .from("vehicle_locations")
@@ -42,7 +63,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   const apiKey = request.headers.get("x-api-key");
-  if (!apiKey || apiKey !== process.env.DRIVER_API_KEY) {
+  if (!apiKey || !process.env.DRIVER_API_KEY || apiKey !== process.env.DRIVER_API_KEY) {
     return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
   }
 
@@ -53,6 +74,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Données invalides" }, { status: 400 });
   }
 
+  if (typeof lat !== "number" || typeof lng !== "number" || lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+    return NextResponse.json({ error: "Coordonnées invalides" }, { status: 400 });
+  }
+
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -61,6 +86,16 @@ export async function POST(request: Request) {
   }
 
   const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const { data: trip } = await supabase
+    .from("trips")
+    .select("id, status")
+    .eq("id", trip_id)
+    .single();
+
+  if (!trip || trip.status === "completed") {
+    return NextResponse.json({ error: "Trajet introuvable ou terminé" }, { status: 404 });
+  }
 
   const { data, error } = await supabase
     .from("vehicle_locations")

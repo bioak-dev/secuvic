@@ -2,10 +2,12 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { ClientDashboard } from "@/components/client/ClientDashboard";
+import { isDemoAllowed } from "@/lib/validation";
 
 export default async function ClientDashboardPage() {
   const cookieStore = await cookies();
-  const isDemo = cookieStore.get("secuvic_demo")?.value === "true";
+  const hasDemoCookie = cookieStore.get("secuvic_demo")?.value === "true";
+  const isDemo = hasDemoCookie && isDemoAllowed();
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
