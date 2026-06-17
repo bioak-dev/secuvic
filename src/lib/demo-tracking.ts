@@ -89,16 +89,23 @@ export function getDemoRoute() {
 export function getDemoTrip(): DemoTrip {
   const cycleMs = 120000;
   const elapsed = Date.now() % cycleMs;
-  const t = elapsed / cycleMs;
-  const progress = t < 0.5 ? t * 2 : 2 - t * 2;
+  const progress = elapsed / cycleMs;
 
   const pos = getPositionOnRoute(progress);
+
+  const epsilon = 0.004;
+  const nextProgress = progress < 1 - epsilon ? progress + epsilon : progress - epsilon;
+  const nextPos = getPositionOnRoute(nextProgress);
+  const heading =
+    progress < 1 - epsilon
+      ? bearing(pos, nextPos)
+      : bearing(nextPos, pos);
 
   const location: VehicleLocation = {
     trip_id: DEMO_TRIP_BASE.id,
     lat: pos.lat,
     lng: pos.lng,
-    heading: pos.heading,
+    heading,
     speed: 55 + Math.sin(Date.now() / 3000) * 15,
     updated_at: new Date().toISOString(),
   };
