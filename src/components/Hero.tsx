@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { ContactLinks } from "@/components/ContactLinks";
-import { COMPANY_NAME, SERVICE_NAME } from "@/lib/company";
+import { SERVICE_NAME } from "@/lib/company";
 
 export function Hero() {
   return (
@@ -23,18 +23,18 @@ export function Hero() {
         <div className="hero-fade-up hero-delay-1 flex items-center gap-3 mb-6">
           <div className="h-[1px] w-12 bg-gold-500"></div>
           <span className="text-gold-500 tracking-[0.2em] uppercase text-xs md:text-sm font-medium">
-            Un service {COMPANY_NAME}
+            Service Premium
           </span>
           <div className="h-[1px] w-12 bg-gold-500"></div>
         </div>
 
-        <h1 className="hero-fade-up hero-delay-2 text-4xl md:text-6xl lg:text-7xl font-serif text-white mb-4 leading-tight">
-          Chauffeur Privé <br />
-          <span className="italic text-gray-300">Mercedes Classe V</span>
+        <h1 className="hero-fade-up hero-delay-2 text-3xl md:text-5xl lg:text-6xl font-serif text-white mb-4 leading-tight">
+          Chauffeur Privé VIP &amp; VIC <br />
+          <span className="italic text-gold-500/90">Cannes · Monaco · Paris</span>
         </h1>
 
         <p className="hero-fade-up hero-delay-3 max-w-2xl text-gray-300 text-lg md:text-xl font-light mb-10">
-          Mise à disposition spécialisée pour vos événements et invités VIC à Cannes, Monaco et Paris.
+          Mise à disposition, transferts et sécurité sur mesure.
         </p>
 
         <div className="hero-fade-up hero-delay-4 flex flex-col items-center gap-4">

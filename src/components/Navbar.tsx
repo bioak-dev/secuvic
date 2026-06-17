@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -27,6 +26,7 @@ export function Navbar() {
     { name: "La Flotte", href: "#fleet" },
     { name: "Destinations", href: "#destinations" },
     { name: "Service VIC", href: "#services" },
+    { name: "FAQ", href: "#faq" },
     { name: "Espace Client", href: "/client" },
   ];
 
@@ -37,19 +37,9 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-3">
-          <Image
-            src="/images/logo-secuvic.png"
-            alt="SecuVIC"
-            width={44}
-            height={44}
-            className="w-11 h-11 object-contain"
-            priority
-          />
-          <div className="flex flex-col leading-none">
-            <span className="font-serif text-xl tracking-widest uppercase font-semibold text-white">Secu<span className="text-gold-500">VIC</span></span>
-            <span className="text-[0.6rem] tracking-[0.25em] uppercase text-gold-500/80 mt-1">Sécurité &amp; Prestige</span>
-          </div>
+        <a href="#" className="flex flex-col leading-none">
+          <span className="font-serif text-xl tracking-widest uppercase font-semibold text-white">Secu<span className="text-gold-500">VIC</span></span>
+          <span className="text-[0.6rem] tracking-[0.25em] uppercase text-gold-500/80 mt-1">Sécurité &amp; Prestige</span>
         </a>
 
         {/* Desktop Nav */}

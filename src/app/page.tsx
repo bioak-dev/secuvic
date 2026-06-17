@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Fleet } from "@/components/Fleet";
 import { Destinations } from "@/components/Destinations";
+import { Faq } from "@/components/Faq";
 import { Footer } from "@/components/Footer";
 import { buildLocalBusinessJsonLd, siteUrl } from "@/lib/seo";
 
@@ -35,6 +36,7 @@ export default function Home() {
       <Fleet />
       <Destinations />
       <EventsMarquee />
+      <Faq />
       <BookingForm />
       <Footer />
     </main>

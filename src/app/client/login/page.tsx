@@ -8,6 +8,7 @@ import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { Shield, Eye } from "lucide-react";
 
 const DEMO_ENABLED = process.env.NEXT_PUBLIC_ALLOW_DEMO_MODE === "true";
+const SUPABASE_CONFIGURED = isSupabaseConfigured();
 
 export default function ClientLoginPage() {
   const router = useRouter();
@@ -21,8 +22,8 @@ export default function ClientLoginPage() {
     setLoading(true);
     setError("");
 
-    if (!isSupabaseConfigured()) {
-      setError("Authentification non configurée.");
+    if (!SUPABASE_CONFIGURED) {
+      setError("Connexion indisponible. Utilisez la démo ci-dessous ou contactez SecuVIC.");
       setLoading(false);
       return;
     }
@@ -74,6 +75,18 @@ export default function ClientLoginPage() {
             <span className="text-xs uppercase tracking-[0.2em] text-gold-500">Accès sécurisé</span>
           </div>
 
+          {!SUPABASE_CONFIGURED && DEMO_ENABLED && (
+            <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+              La connexion client sera activée pour les comptes enregistrés. En attendant, découvrez le suivi GPS en direct via la démo.
+            </p>
+          )}
+
+          {!SUPABASE_CONFIGURED && !DEMO_ENABLED && (
+            <p className="text-amber-400/90 text-sm mb-6 leading-relaxed">
+              Espace client en cours d&apos;activation. Contactez SecuVIC pour accéder au suivi de vos invités VIC.
+            </p>
+          )}
+
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <label htmlFor="client-email" className="text-xs uppercase tracking-wider text-gray-400">Email</label>
@@ -102,8 +115,8 @@ export default function ClientLoginPage() {
 
             <button
               type="submit"
-              disabled={loading}
-              className="w-full bg-gold-500 text-black uppercase tracking-widest font-medium py-3 hover:bg-gold-400 transition-colors disabled:opacity-70"
+              disabled={loading || !SUPABASE_CONFIGURED}
+              className="w-full bg-gold-500 text-black uppercase tracking-widest font-medium py-3 hover:bg-gold-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? "Connexion…" : "Se connecter"}
             </button>

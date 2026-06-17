@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { COMPANY_ADDRESS, COMPANY_LEGAL_NAME, COMPANY_NAME, SERVICE_NAME } from "./company";
+import { COMPANY_LEGAL_NAME, COMPANY_NAME, SERVICE_NAME } from "./company";
 import { CONTACT_PHONE_DISPLAY } from "./contact";
+import { buildFaqJsonLd } from "./faq";
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://secuvic.vercel.app";
 
@@ -160,35 +161,7 @@ export function buildLocalBusinessJsonLd() {
           ],
         },
       },
-      {
-        "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "Quelles villes sont couvertes par SecuVIC ?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "SecuVIC opère principalement à Cannes, Monaco et Paris, pour les transferts, mises à disposition et événements VIC.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Quel véhicule est proposé ?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Un Mercedes Classe V noir, configuré pour le confort et la confidentialité de 1 à 7 passagers.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "SecuVIC est-il un service indépendant ?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: `SecuVIC est le service premium de ${COMPANY_NAME} (${COMPANY_LEGAL_NAME}), société VTC basée à ${COMPANY_ADDRESS}.`,
-            },
-          },
-        ],
-      },
+      buildFaqJsonLd(),
     ],
   };
 }
