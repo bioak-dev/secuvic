@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   COMPANY_ADDRESS,
@@ -6,6 +7,15 @@ import {
   COMPANY_SIRET,
   SERVICE_NAME,
 } from "@/lib/company";
+import { siteUrl } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Politique de confidentialité",
+  description:
+    "Politique de confidentialité et protection des données personnelles — SecuVIC, service DRIVE&YOU. RGPD, cookies et droits des utilisateurs.",
+  alternates: { canonical: `${siteUrl}/politique-confidentialite` },
+  robots: { index: true, follow: true },
+};
 
 export default function PolitiqueConfidentialitePage() {
   return (

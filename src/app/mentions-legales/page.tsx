@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   COMPANY_ADDRESS,
@@ -11,6 +12,15 @@ import {
   COMPANY_SIRET,
   SERVICE_NAME,
 } from "@/lib/company";
+import { siteUrl } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Mentions légales",
+  description:
+    "Mentions légales du site SecuVIC — service chauffeur privé de DRIVE&YOU. SIRET, EVTC, adresse et informations juridiques.",
+  alternates: { canonical: `${siteUrl}/mentions-legales` },
+  robots: { index: true, follow: true },
+};
 
 export default function MentionsLegalesPage() {
   return (

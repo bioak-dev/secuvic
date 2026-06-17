@@ -1,31 +1,31 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-export function Destinations() {
-  const destinations = [
-    {
-      name: "Cannes",
-      image: "/images/real-cannes.jpg",
-      tagline: "Festival & Croisette",
-      description: "Transferts et mises à disposition pour le Festival du Film, les soirées privées et les palaces de La Croisette."
-    },
-    {
-      name: "Monaco",
-      image: "/images/real-monaco.jpg",
-      tagline: "Grand Prix & Monte-Carlo",
-      description: "Un service d'exception pour le Grand Prix, les galas du Casino et les événements les plus exclusifs de la Principauté."
-    },
-    {
-      name: "Paris",
-      image: "/images/real-paris.jpg",
-      tagline: "Fashion Week & Affaires",
-      description: "Discrétion absolue pour la Fashion Week, les rendez-vous d'affaires et les soirées dans la capitale."
-    }
-  ];
+const destinations = [
+  {
+    name: "Cannes",
+    image: "/images/real-cannes.jpg",
+    tagline: "Festival & Croisette",
+    description:
+      "Transferts et mises à disposition pour le Festival du Film, les soirées privées et les palaces de La Croisette.",
+  },
+  {
+    name: "Monaco",
+    image: "/images/real-monaco.jpg",
+    tagline: "Grand Prix & Monte-Carlo",
+    description:
+      "Un service d'exception pour le Grand Prix, les galas du Casino et les événements les plus exclusifs de la Principauté.",
+  },
+  {
+    name: "Paris",
+    image: "/images/real-paris.jpg",
+    tagline: "Fashion Week & Affaires",
+    description:
+      "Discrétion absolue pour la Fashion Week, les rendez-vous d'affaires et les soirées dans la capitale.",
+  },
+];
 
+export function Destinations() {
   return (
     <section id="destinations" className="py-24 bg-black">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -35,26 +35,25 @@ export function Destinations() {
             <span className="text-gold-500 tracking-[0.2em] uppercase text-xs font-medium">Nos Destinations</span>
             <div className="h-[1px] w-12 bg-gold-500"></div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-serif mb-6">Le Triangle d&apos;Or du <span className="text-gold-500 italic">Luxe</span></h2>
+          <h2 className="text-3xl md:text-4xl font-serif mb-6">
+            Le Triangle d&apos;Or du <span className="text-gold-500 italic">Luxe</span>
+          </h2>
           <p className="text-gray-400 font-light text-lg">
             Présents sur les places les plus prestigieuses, nous accompagnons vos invités VIC lors des plus grands événements.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {destinations.map((dest, index) => (
-            <motion.div
+          {destinations.map((dest) => (
+            <article
               key={dest.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="group relative h-[460px] overflow-hidden rounded-sm border border-white/10 cursor-pointer"
+              className="group relative h-[460px] overflow-hidden rounded-sm border border-white/10"
             >
               <Image
                 src={dest.image}
-                alt={dest.name}
+                alt={`Chauffeur privé ${dest.name} — ${dest.tagline}`}
                 fill
+                loading="lazy"
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
@@ -70,7 +69,7 @@ export function Destinations() {
                   {dest.description}
                 </p>
               </div>
-            </motion.div>
+            </article>
           ))}
         </div>
       </div>
