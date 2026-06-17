@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import { ContactLinks } from "@/components/ContactLinks";
 
 export function Hero() {
   return (
@@ -51,20 +52,23 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4"
+          className="flex flex-col items-center gap-4"
         >
-          <a
-            href="#booking"
-            className="flex items-center justify-center gap-2 px-8 py-4 bg-gold-500 text-black uppercase tracking-wider font-medium hover:bg-gold-400 transition-colors rounded-sm"
-          >
-            Réserver maintenant <ChevronRight size={18} />
-          </a>
-          <a
-            href="#services"
-            className="flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-white/30 text-white uppercase tracking-wider font-medium hover:bg-white/10 transition-colors rounded-sm"
-          >
-            Découvrir nos services
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="#booking"
+              className="flex items-center justify-center gap-2 px-8 py-4 bg-gold-500 text-black uppercase tracking-wider font-medium hover:bg-gold-400 transition-colors rounded-sm"
+            >
+              Réserver maintenant <ChevronRight size={18} />
+            </a>
+            <a
+              href="#services"
+              className="flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-white/30 text-white uppercase tracking-wider font-medium hover:bg-white/10 transition-colors rounded-sm"
+            >
+              Découvrir nos services
+            </a>
+          </div>
+          <ContactLinks />
         </motion.div>
       </div>
       

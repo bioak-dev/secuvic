@@ -2,8 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_LINK,
+  CONTACT_WHATSAPP_LINK,
+} from "@/lib/contact";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,6 +63,21 @@ export function Navbar() {
             </a>
           ))}
           <a
+            href={CONTACT_PHONE_LINK}
+            className="hidden lg:flex items-center gap-2 text-sm text-gray-300 hover:text-gold-500 transition-colors"
+          >
+            <Phone size={16} />
+            {CONTACT_PHONE_DISPLAY}
+          </a>
+          <a
+            href={CONTACT_WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:flex items-center gap-2 px-4 py-2 border border-[#25D366]/40 text-[#25D366] text-sm uppercase tracking-wide hover:bg-[#25D366]/10 transition-colors rounded-sm"
+          >
+            WhatsApp
+          </a>
+          <a
             href="#booking"
             className="px-5 py-2.5 bg-gold-500 text-black text-sm uppercase tracking-wide font-medium hover:bg-gold-400 transition-colors rounded-sm"
           >
@@ -94,6 +114,23 @@ export function Navbar() {
                   {link.name}
                 </a>
               ))}
+              <a
+                href={CONTACT_PHONE_LINK}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-3 text-lg text-gold-500"
+              >
+                <Phone size={20} />
+                {CONTACT_PHONE_DISPLAY}
+              </a>
+              <a
+                href={CONTACT_WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full text-center px-5 py-3 border border-[#25D366]/40 text-[#25D366] text-sm uppercase tracking-wide font-medium hover:bg-[#25D366]/10 transition-colors rounded-sm"
+              >
+                WhatsApp
+              </a>
               <a
                 href="#booking"
                 onClick={() => setIsMobileMenuOpen(false)}

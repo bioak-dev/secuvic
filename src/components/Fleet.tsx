@@ -62,15 +62,11 @@ export function Fleet() {
           >
             <div className="aspect-[4/3] rounded-sm overflow-hidden relative border border-white/10">
               <img 
-                src="/images/interior-v-class.png" 
-                alt="Mercedes Classe V Intérieur" 
+                src="/images/exterior-v-class.png" 
+                alt="Mercedes Classe V Noir — vue extérieure" 
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-              <div className="absolute bottom-6 left-6">
-                <h3 className="text-xl font-serif text-white">Intérieur Configuration Salon</h3>
-                <p className="text-gray-400 text-sm">Cuir Nappa noir, finitions boiseries</p>
-              </div>
             </div>
           </motion.div>
 

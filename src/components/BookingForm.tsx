@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { ContactLinks } from "@/components/ContactLinks";
 
 interface FormData {
   name: string;
@@ -65,9 +66,13 @@ export function BookingForm() {
       <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-serif mb-4">Réserver votre <span className="text-gold-500 italic">Chauffeur</span></h2>
-          <p className="text-gray-400 font-light">
+          <p className="text-gray-400 font-light mb-6">
             Veuillez remplir ce formulaire pour toute demande de mise à disposition ou de transfert. Notre équipe vous contactera dans les plus brefs délais.
           </p>
+          <div className="flex flex-col items-center gap-3">
+            <p className="text-xs uppercase tracking-[0.2em] text-gold-500/80">Besoin immédiat ?</p>
+            <ContactLinks />
+          </div>
         </div>
 
         <motion.div 
