@@ -27,6 +27,7 @@ export function Navbar() {
     { name: "La Flotte", href: "#fleet" },
     { name: "Destinations", href: "#destinations" },
     { name: "Service VIC", href: "#services" },
+    { name: "Espace Client", href: "/client" },
   ];
 
   return (

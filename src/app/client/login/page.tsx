@@ -1,0 +1,127 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { Shield, Eye } from "lucide-react";
+
+export default function ClientLoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    if (!isSupabaseConfigured()) {
+      setError("Authentification non configurée. Utilisez le mode démo.");
+      setLoading(false);
+      return;
+    }
+
+    const supabase = createClient();
+    const { error: authError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (authError) {
+      setError("Identifiants incorrects.");
+      setLoading(false);
+      return;
+    }
+
+    router.push("/client/dashboard");
+  };
+
+  const handleDemo = () => {
+    document.cookie = "secuvic_demo=true; path=/; max-age=86400; SameSite=Lax";
+    router.push("/client/dashboard");
+  };
+
+  return (
+    <div className="min-h-screen bg-black flex items-center justify-center px-6">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-10">
+          <Image
+            src="/images/logo-secuvic.png"
+            alt="SecuVIC"
+            width={64}
+            height={64}
+            className="w-16 h-16 mx-auto mb-4"
+          />
+          <h1 className="font-serif text-2xl tracking-widest uppercase mb-2">
+            Secu<span className="text-gold-500">VIC</span>
+          </h1>
+          <p className="text-gray-400 text-sm">Espace Client — Suivi VIC en temps réel</p>
+        </div>
+
+        <div className="bg-zinc-950 border border-white/10 p-8 rounded-sm">
+          <div className="flex items-center gap-3 mb-6">
+            <Shield className="w-5 h-5 text-gold-500" />
+            <span className="text-xs uppercase tracking-[0.2em] text-gold-500">Accès sécurisé</span>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="text-xs uppercase tracking-wider text-gray-400">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full mt-1 bg-black border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-gold-500 transition-colors"
+                placeholder="client@entreprise.com"
+              />
+            </div>
+            <div>
+              <label className="text-xs uppercase tracking-wider text-gray-400">Mot de passe</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full mt-1 bg-black border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-gold-500 transition-colors"
+                placeholder="••••••••"
+              />
+            </div>
+
+            {error && <p className="text-red-400 text-sm">{error}</p>}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-gold-500 text-black uppercase tracking-widest font-medium py-3 hover:bg-gold-400 transition-colors disabled:opacity-70"
+            >
+              {loading ? "Connexion…" : "Se connecter"}
+            </button>
+          </form>
+
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-white/10"></div>
+            </div>
+            <div className="relative flex justify-center text-xs uppercase tracking-wider">
+              <span className="bg-zinc-950 px-3 text-gray-500">ou</span>
+            </div>
+          </div>
+
+          <button
+            onClick={handleDemo}
+            className="w-full flex items-center justify-center gap-2 border border-white/20 text-gray-300 uppercase tracking-wider text-sm py-3 hover:border-gold-500/50 hover:text-gold-500 transition-colors"
+          >
+            <Eye size={16} />
+            Voir la démo (A8 · Cannes → Monaco)
+          </button>
+        </div>
+
+        <p className="text-center text-xs text-gray-600 mt-6">
+          <a href="/" className="hover:text-gold-500 transition-colors">← Retour au site</a>
+        </p>
+      </div>
+    </div>
+  );
+}

@@ -23,6 +23,7 @@ export function Footer() {
           <ContactLinks variant="compact" />
 
           <div className="flex gap-8 text-sm text-gray-400">
+            <a href="/client" className="hover:text-gold-500 transition-colors">Espace Client</a>
             <a href="#" className="hover:text-gold-500 transition-colors">Mentions Légales</a>
             <a href="#" className="hover:text-gold-500 transition-colors">Politique de Confidentialité</a>
           </div>
