@@ -36,39 +36,39 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between">
-        <a href="#" className="flex flex-col leading-none" aria-label={`${SERVICE_NAME} — accueil`}>
-          <span className="wordmark text-2xl md:text-[1.7rem] font-medium">{SERVICE_NAME}</span>
-          <span
-            className={`text-[0.55rem] tracking-[0.3em] uppercase mt-1.5 transition-colors ${
-              solid ? "text-mute" : "text-white/70"
-            }`}
+        <div className="flex items-center gap-9">
+          <button
+            className="lg:hidden"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={isMobileMenuOpen}
           >
-            Chauffeurs Privés
-          </span>
-        </a>
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
 
-        <div className="hidden lg:flex items-center gap-9">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="link-underline text-[0.72rem] tracking-[0.18em] uppercase font-medium"
-            >
-              {link.name}
-            </a>
-          ))}
+          <div className="hidden lg:flex items-center gap-9">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="link-underline text-[0.72rem] tracking-[0.18em] uppercase font-medium"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="flex items-center gap-6">
           <a
             href={CONTACT_PHONE_LINK}
-            className="link-underline text-[0.72rem] tracking-[0.12em] font-medium"
+            className="hidden lg:inline link-underline text-[0.72rem] tracking-[0.12em] font-medium"
           >
             {CONTACT_PHONE_DISPLAY}
           </a>
           <a
             href="#booking"
-            className={`px-6 py-2.5 text-[0.7rem] tracking-[0.18em] uppercase font-medium transition-colors ${
+            className={`hidden lg:inline px-6 py-2.5 text-[0.7rem] tracking-[0.18em] uppercase font-medium transition-colors ${
               solid
                 ? "bg-ink text-ivory hover:bg-champagne"
                 : "bg-white text-ink hover:bg-champagne hover:text-white"
@@ -76,16 +76,10 @@ export function Navbar() {
           >
             Réserver
           </a>
+          <a href="#" className="leading-none" aria-label={`${SERVICE_NAME} — accueil`}>
+            <span className="wordmark text-2xl md:text-[1.7rem] font-medium">{SERVICE_NAME}</span>
+          </a>
         </div>
-
-        <button
-          className="lg:hidden"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-          aria-expanded={isMobileMenuOpen}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
 
       <AnimatePresence>
