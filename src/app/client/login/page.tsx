@@ -54,7 +54,7 @@ export default function ClientLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-6">
+    <div className="min-h-screen bg-black text-white flex items-center justify-center px-6">
       <div className="w-full max-w-md">
         <div className="text-center mb-10">
           <Image

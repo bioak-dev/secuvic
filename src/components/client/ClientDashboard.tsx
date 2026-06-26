@@ -115,7 +115,7 @@ export function ClientDashboard({ isDemo }: ClientDashboardProps) {
   const selectedTrip = trips.find((t) => t.id === selectedTripId);
 
   return (
-    <div className="min-h-screen bg-black flex flex-col">
+    <div className="min-h-screen bg-black text-white flex flex-col">
       <header className="border-b border-white/10 bg-zinc-950 px-6 py-4 flex items-center justify-between shrink-0">
         <div>
           <h1 className="font-serif text-xl tracking-widest uppercase">

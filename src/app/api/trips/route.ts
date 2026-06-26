@@ -47,7 +47,7 @@ export async function GET(request: Request) {
         .eq("trip_id", trip.id)
         .order("updated_at", { ascending: false })
         .limit(1)
-        .single();
+        .maybeSingle();
 
       return { ...trip, location: location || null };
     })
