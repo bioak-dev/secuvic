@@ -9,8 +9,13 @@ interface FormData {
   email: string;
   phone: string;
   service: string;
-  date: string;
-  location: string;
+  dateStart: string;
+  dateEnd: string;
+  timeStart: string;
+  timeEnd: string;
+  pickup: string;
+  dropoff: string;
+  passengers: string;
   details: string;
   consent: boolean;
 }
@@ -20,8 +25,13 @@ const initialForm: FormData = {
   email: "",
   phone: "",
   service: "mise-a-disposition",
-  date: "",
-  location: "",
+  dateStart: "",
+  dateEnd: "",
+  timeStart: "",
+  timeEnd: "",
+  pickup: "",
+  dropoff: "",
+  passengers: "",
   details: "",
   consent: false,
 };
@@ -141,22 +151,56 @@ export function BookingForm() {
 
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="space-y-2">
-                    <label htmlFor="booking-date" className={labelClass}>Date souhaitée</label>
-                    <input id="booking-date" required type="date" value={form.date}
-                      onChange={(e) => update("date", e.target.value)} className={fieldClass} />
+                    <label htmlFor="booking-date-start" className={labelClass}>Date de début</label>
+                    <input id="booking-date-start" required type="date" value={form.dateStart}
+                      onChange={(e) => update("dateStart", e.target.value)} className={fieldClass} />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="booking-location" className={labelClass}>Lieu (Cannes, Monaco, Paris…)</label>
-                    <input id="booking-location" required type="text" maxLength={200} value={form.location}
-                      onChange={(e) => update("location", e.target.value)} className={fieldClass} placeholder="Ville ou adresse" />
+                    <label htmlFor="booking-date-end" className={labelClass}>Date de fin <span className="text-mute/60 normal-case tracking-normal">(optionnel)</span></label>
+                    <input id="booking-date-end" type="date" value={form.dateEnd} min={form.dateStart || undefined}
+                      onChange={(e) => update("dateEnd", e.target.value)} className={fieldClass} />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <label htmlFor="booking-time-start" className={labelClass}>Heure de prise en charge</label>
+                    <input id="booking-time-start" required type="time" value={form.timeStart}
+                      onChange={(e) => update("timeStart", e.target.value)} className={fieldClass} />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="booking-time-end" className={labelClass}>Heure de fin <span className="text-mute/60 normal-case tracking-normal">(optionnel)</span></label>
+                    <input id="booking-time-end" type="time" value={form.timeEnd}
+                      onChange={(e) => update("timeEnd", e.target.value)} className={fieldClass} />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <label htmlFor="booking-pickup" className={labelClass}>Lieu de prise en charge</label>
+                    <input id="booking-pickup" required type="text" maxLength={200} value={form.pickup}
+                      onChange={(e) => update("pickup", e.target.value)} className={fieldClass} placeholder="Adresse, hôtel, aéroport…" />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="booking-dropoff" className={labelClass}>Destination <span className="text-mute/60 normal-case tracking-normal">(optionnel)</span></label>
+                    <input id="booking-dropoff" type="text" maxLength={200} value={form.dropoff}
+                      onChange={(e) => update("dropoff", e.target.value)} className={fieldClass} placeholder="Adresse d'arrivée" />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <label htmlFor="booking-passengers" className={labelClass}>Nombre de passagers <span className="text-mute/60 normal-case tracking-normal">(optionnel)</span></label>
+                    <input id="booking-passengers" type="number" min={1} max={50} value={form.passengers}
+                      onChange={(e) => update("passengers", e.target.value)} className={fieldClass} placeholder="2" />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="booking-details" className={labelClass}>Détails de la demande</label>
-                  <textarea id="booking-details" required rows={4} maxLength={2000} value={form.details}
+                  <label htmlFor="booking-details" className={labelClass}>Détails de la demande <span className="text-mute/60 normal-case tracking-normal">(optionnel)</span></label>
+                  <textarea id="booking-details" rows={4} maxLength={2000} value={form.details}
                     onChange={(e) => update("details", e.target.value)}
-                    className={`${fieldClass} resize-none`} placeholder="Passagers, bagages, besoins VIC…" />
+                    className={`${fieldClass} resize-none`} placeholder="Bagages, besoins particuliers, vol n°…" />
                 </div>
 
                 <label className="flex items-start gap-3 cursor-pointer">
