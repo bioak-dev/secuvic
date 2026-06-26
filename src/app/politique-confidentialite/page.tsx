@@ -58,7 +58,7 @@ export default function PolitiqueConfidentialitePage() {
           <section>
             <h2 className="text-champagne uppercase tracking-[0.2em] text-[0.7rem] mb-3">Base légale</h2>
             <p>
-              Exécution du contrat (réservation), intérêt légitime (sécurité des transferts),
+              Exécution du contrat (réservation), intérêt légitime (suivi des transferts en temps réel),
               consentement (formulaire de contact).
             </p>
           </section>

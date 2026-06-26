@@ -6,7 +6,7 @@ import { buildFaqJsonLd } from "./faq";
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://secuvic.vercel.app";
 
 export const siteDescription =
-  `${SERVICE_NAME} — chauffeur privé Mercedes Classe V par ${COMPANY_NAME}. Transport VIC sécurisé à Cannes, Monaco et Paris. Mise à disposition, transferts et discrétion absolue.`;
+  `${SERVICE_NAME} — chauffeur privé Mercedes Classe V par ${COMPANY_NAME}. Transport VIC à Cannes, Monaco et Paris avec application de suivi en temps réel. Mise à disposition, transferts et discrétion absolue.`;
 
 export const siteKeywords = [
   "chauffeur privé",
@@ -41,7 +41,7 @@ export const defaultMetadata: Metadata = {
   },
   openGraph: {
     title: `${SERVICE_NAME} | Chauffeur Privé Mercedes Classe V`,
-    description: `Sécurité & Prestige — Chauffeur privé VIC à Cannes, Monaco et Paris. Un service ${COMPANY_NAME}.`,
+    description: `Prestige & Suivi en temps réel — Chauffeur privé VIC à Cannes, Monaco et Paris. Un service ${COMPANY_NAME}.`,
     url: siteUrl,
     siteName: SERVICE_NAME,
     locale: "fr_FR",
@@ -155,7 +155,7 @@ export function buildLocalBusinessJsonLd() {
               itemOffered: {
                 "@type": "Service",
                 name: "Transport événementiel VIC",
-                description: "Accompagnement sécurisé pour festivals, salons et grands événements.",
+                description: "Accompagnement et suivi en temps réel pour festivals, salons et grands événements.",
                 areaServed: "Cannes, Monaco, Paris",
               },
             },

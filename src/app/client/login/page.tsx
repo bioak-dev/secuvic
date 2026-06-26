@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
 import { Brand } from "@/components/Brand";
-import { Shield, Eye } from "lucide-react";
+import { Navigation, Eye } from "lucide-react";
 
 const DEMO_ENABLED = process.env.NEXT_PUBLIC_ALLOW_DEMO_MODE === "true";
 const SUPABASE_CONFIGURED = isSupabaseConfigured();
@@ -70,8 +70,8 @@ export default function ClientLoginPage() {
 
         <div className="bg-zinc-950 border border-white/10 p-8 rounded-sm">
           <div className="flex items-center gap-3 mb-6">
-            <Shield className="w-5 h-5 text-gold-500" />
-            <span className="text-xs uppercase tracking-[0.2em] text-gold-500">Accès sécurisé</span>
+            <Navigation className="w-5 h-5 text-gold-500" />
+            <span className="text-xs uppercase tracking-[0.2em] text-gold-500">Application de suivi</span>
           </div>
 
           {!SUPABASE_CONFIGURED && DEMO_ENABLED && (

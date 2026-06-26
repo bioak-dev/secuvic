@@ -55,9 +55,8 @@ export default function MentionsLegalesPage() {
             <h2 className="text-champagne uppercase tracking-[0.2em] text-[0.7rem] mb-3">Activité</h2>
             <p>
               Transport de personnes à titre onéreux (VTC). <Brand />, service de {COMPANY_NAME},
-              propose des prestations de mise à disposition et de transfert en Mercedes Classe V. La coordination
-              avec des agents de protection agréés (CNAPS) est assurée via des partenaires
-              certifiés, sur demande.
+              propose des prestations de mise à disposition et de transfert en Mercedes Classe V, avec
+              une application de suivi en temps réel mise à disposition des clients depuis leur espace personnel.
             </p>
           </section>
 

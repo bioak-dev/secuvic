@@ -32,7 +32,7 @@ export function Hero() {
         </h1>
 
         <p className="fade-up delay-3 mt-8 max-w-xl text-base md:text-lg font-light text-white/75 leading-relaxed">
-          Mise à disposition, transferts et sécurité sur mesure à Cannes, Monaco et Paris.
+          Mise à disposition, transferts et suivi en temps réel à Cannes, Monaco et Paris.
           Une Maison de chauffeurs privés au service de l&apos;exception.
         </p>
 

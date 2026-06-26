@@ -15,7 +15,7 @@ export type FaqItem = {
 export const faqItems: FaqItem[] = [
   {
     question: "Qu'est-ce que VICD ?",
-    answer: `${SERVICE_NAME} est le service premium de chauffeur privé VIP et VIC proposé par ${COMPANY_NAME} (${COMPANY_LEGAL_NAME}). Il combine transport haut de gamme, discrétion et sécurité pour les déplacements d'exception à Cannes, Monaco et Paris.`,
+    answer: `${SERVICE_NAME} est le service premium de chauffeur privé VIP et VIC proposé par ${COMPANY_NAME} (${COMPANY_LEGAL_NAME}). Il combine transport haut de gamme, discrétion et une application de suivi en temps réel pour les déplacements d'exception à Cannes, Monaco et Paris.`,
   },
   {
     question: "Dans quelles villes VICD opère-t-il ?",
@@ -27,19 +27,19 @@ export const faqItems: FaqItem[] = [
   },
   {
     question: "Quels services propose VICD ?",
-    answer: "Mise à disposition chauffeur (à l'heure, demi-journée ou journée), transferts aéroport et hôtel (Nice Côte d'Azur, Cannes, Monaco, Paris), transport événementiel et accompagnement sécurisé sur demande avec coordination d'agents de protection agréés (CNAPS).",
+    answer: "Mise à disposition chauffeur (à l'heure, demi-journée ou journée), transferts aéroport et hôtel (Nice Côte d'Azur, Cannes, Monaco, Paris) et transport événementiel. Chaque transfert est suivi en temps réel par le client depuis son espace personnel.",
   },
   {
     question: "VICD est-il réservé aux clients VIP et VIC ?",
-    answer: `${SERVICE_NAME} est spécialisé dans l'accueil et le transport de Very Important Clients (VIC) et de personnalités VIP : discrétion absolue, confidentialité de l'habitacle, itinéraires sécurisés et service sur mesure selon vos exigences.`,
+    answer: `${SERVICE_NAME} est spécialisé dans l'accueil et le transport de Very Important Clients (VIC) et de personnalités VIP : discrétion absolue, suivi du véhicule en temps réel et service sur mesure selon vos exigences.`,
   },
   {
     question: "Comment réserver un chauffeur privé VICD ?",
     answer: `Vous pouvez réserver via le formulaire en ligne sur secuvic.com, par téléphone au ${CONTACT_PHONE_DISPLAY} ou par WhatsApp. Indiquez la date, le lieu, le type de prestation et vos besoins spécifiques pour recevoir une proposition personnalisée.`,
   },
   {
-    question: "VICD garantit-il la confidentialité des déplacements ?",
-    answer: "Oui. Chaque mission est traitée avec discrétion absolue : inspection préalable des véhicules, chauffeurs formés à la conduite de sécurité, itinéraires anticipés et possibilité de signer un accord de confidentialité (NDA) sur demande.",
+    question: "Comment suivre mon transfert en temps réel ?",
+    answer: "Depuis votre espace client, vous accédez à une application de suivi qui affiche en direct la position de votre véhicule sur une carte, l'itinéraire emprunté et l'heure d'arrivée estimée, sur mobile comme sur ordinateur.",
   },
   {
     question: "Qui est l'éditeur et l'exploitant de VICD ?",

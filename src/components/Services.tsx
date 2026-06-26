@@ -1,30 +1,30 @@
-import { MapPin, Star, ShieldCheck, UserCheck, Eye, ScanSearch, Clock } from "lucide-react";
+import { MapPin, Star, Smartphone, UserCheck, Navigation, Route, Clock } from "lucide-react";
 import { Brand } from "@/components/Brand";
 
 const features = [
   {
-    icon: ShieldCheck,
-    title: "Coordination Sécurité",
+    icon: Navigation,
+    title: "Suivi en Temps Réel",
     description:
-      "Sur demande, nous coordonnons vos déplacements avec des agents de protection agréés (CNAPS), pour un dispositif sur-mesure.",
+      "Suivez la position de votre chauffeur en direct sur une carte, à chaque instant de votre transfert.",
+  },
+  {
+    icon: Smartphone,
+    title: "Espace Client Dédié",
+    description:
+      "Une application de suivi accessible depuis votre espace personnel, sur mobile comme sur ordinateur.",
+  },
+  {
+    icon: Route,
+    title: "Itinéraire & Arrivée",
+    description:
+      "Visualisez l'itinéraire emprunté et l'heure d'arrivée estimée de votre véhicule, en direct.",
   },
   {
     icon: UserCheck,
-    title: "Chauffeurs Formés",
+    title: "Chauffeurs d'Exception",
     description:
-      "Une conduite de sécurité et d'évitement maîtrisée, et la gestion sereine des situations les plus sensibles.",
-  },
-  {
-    icon: ScanSearch,
-    title: "Confidentialité de l'Habitacle",
-    description:
-      "Chaque véhicule est inspecté avec des outils professionnels (micros, caméras, traceurs) avant chaque mission.",
-  },
-  {
-    icon: Eye,
-    title: "Discrétion Absolue",
-    description:
-      "Confidentialité totale sur vos déplacements et vos identités. Accords de non-divulgation signés sur demande.",
+      "Des chauffeurs privés expérimentés, ponctuels et discrets, au service de votre confort.",
   },
   {
     icon: Star,
@@ -46,13 +46,13 @@ const features = [
   },
 ];
 
-const securityPoints = [
-  "Détection de micros, caméras cachées et traceurs GPS",
-  "Véhicules inspectés avec des outils professionnels",
-  "Chauffeurs formés à la conduite de sécurité",
-  "Itinéraires sécurisés et repérages préalables",
-  "Coordination avec des agents de protection (CNAPS)",
-  "Confidentialité totale, NDA et anonymat",
+const trackingPoints = [
+  "Position du véhicule en direct sur la carte",
+  "Itinéraire et heure d'arrivée estimée",
+  "Vitesse et progression du trajet en temps réel",
+  "Accès depuis votre mobile et votre ordinateur",
+  "Espace client personnel et privé",
+  "Historique de vos transferts",
 ];
 
 export function Services() {
@@ -66,13 +66,13 @@ export function Services() {
           </div>
           <div className="lg:col-span-9">
             <h2 className="font-serif text-3xl md:text-5xl leading-[1.15] max-w-3xl">
-              <Brand /> allie le raffinement du transport de luxe à une exigence de
-              sécurité sans compromis.
+              <Brand /> allie le raffinement du transport de luxe à une
+              application de suivi en temps réel.
             </h2>
             <p className="mt-8 max-w-2xl text-ink-soft font-light text-lg leading-relaxed">
-              Notre flotte de Mercedes Classe V noir est pilotée par des chauffeurs formés à la
-              conduite de sécurité, en coordination avec des agents de protection agréés. Une
-              signature : la sérénité absolue de vos passagers.
+              Notre flotte de Mercedes Classe V noir est pilotée par des chauffeurs d&apos;exception.
+              Et grâce à notre application de suivi, vous visualisez en direct la position de
+              votre véhicule, du départ jusqu&apos;à l&apos;arrivée.
             </p>
           </div>
         </div>
@@ -103,31 +103,31 @@ export function Services() {
         </div>
       </div>
 
-      {/* Engagement sécurité */}
+      {/* Application de suivi */}
       <div className="bg-ink text-ivory">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-24 md:py-32 grid lg:grid-cols-2 gap-16 items-start">
           <div>
-            <span className="eyebrow">Notre engagement</span>
+            <span className="eyebrow">L&apos;application</span>
             <h3 className="font-serif text-3xl md:text-4xl mt-6 leading-tight">
-              Vos invités VIC entre les mains{" "}
-              <span className="italic text-champagne-soft">d&apos;experts</span>
+              Suivez votre transfert{" "}
+              <span className="italic text-champagne-soft">en direct</span>
             </h3>
             <p className="mt-7 text-white/60 font-light leading-relaxed max-w-md">
               Au-delà du confort, <Brand />{" "}
-              place la sécurité au centre de chaque mission.
-              De la planification de l&apos;itinéraire à la prise en charge, chaque détail est
-              anticipé pour la tranquillité de vos passagers.
+              met la technologie au service de votre sérénité. Depuis votre espace client,
+              suivez la position de votre chauffeur en temps réel et anticipez chaque étape
+              de votre trajet.
             </p>
             <a
-              href="#booking"
+              href="/client/login"
               className="link-underline inline-block mt-9 text-[0.72rem] tracking-[0.2em] uppercase text-champagne-soft"
             >
-              Demander un dispositif sur-mesure
+              Accéder à l&apos;espace client
             </a>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-x-10 gap-y-6 lg:pt-4">
-            {securityPoints.map((point) => (
+            {trackingPoints.map((point) => (
               <div key={point} className="border-t border-white/15 pt-5">
                 <span className="text-white/80 text-sm font-light leading-relaxed">{point}</span>
               </div>
