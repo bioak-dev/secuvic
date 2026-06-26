@@ -108,7 +108,7 @@ export function ClientDashboard({ isDemo }: ClientDashboardProps) {
       const supabase = createClient();
       await supabase.auth.signOut();
     }
-    document.cookie = "secuvic_demo=; path=/; max-age=0";
+    document.cookie = "vicd_demo=; path=/; max-age=0";
     router.push("/client/login");
   };
 
@@ -153,7 +153,7 @@ export function ClientDashboard({ isDemo }: ClientDashboardProps) {
 
       <div className="flex-1 flex flex-col lg:flex-row min-h-0">
         <aside className="lg:w-96 border-b lg:border-b-0 lg:border-r border-white/10 bg-zinc-950 p-6 overflow-y-auto shrink-0">
-          <h2 className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-4">VIC en cours</h2>
+          <h2 className="text-xs uppercase tracking-[0.2em] text-gold-500 mb-4">Vos trajets en cours</h2>
 
           {loading ? (
             <p className="text-gray-500 text-sm">Chargement…</p>
@@ -228,7 +228,7 @@ export function ClientDashboard({ isDemo }: ClientDashboardProps) {
             </>
           ) : (
             <div className="flex-1 flex items-center justify-center text-gray-500">
-              Sélectionnez un VIC pour afficher sa position
+              Sélectionnez un trajet pour afficher sa position
             </div>
           )}
         </main>

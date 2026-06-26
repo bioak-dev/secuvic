@@ -6,7 +6,7 @@ import { isDemoAllowed } from "@/lib/validation";
 
 export default async function ClientDashboardPage() {
   const cookieStore = await cookies();
-  const hasDemoCookie = cookieStore.get("secuvic_demo")?.value === "true";
+  const hasDemoCookie = cookieStore.get("vicd_demo")?.value === "true";
   const isDemo = hasDemoCookie && isDemoAllowed();
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;

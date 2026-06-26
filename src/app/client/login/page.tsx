@@ -49,7 +49,7 @@ export default function ClientLoginPage() {
       setError("Le mode démo n'est pas disponible.");
       return;
     }
-    document.cookie = `secuvic_demo=true; path=/; max-age=3600; SameSite=Lax${window.location.protocol === "https:" ? "; Secure" : ""}`;
+    document.cookie = `vicd_demo=true; path=/; max-age=3600; SameSite=Lax${window.location.protocol === "https:" ? "; Secure" : ""}`;
     router.push("/client/dashboard");
   };
 
@@ -65,7 +65,7 @@ export default function ClientLoginPage() {
             className="w-16 h-16 mx-auto mb-4 bg-white rounded-sm p-1"
           />
           <h1 className="font-serif text-3xl tracking-[0.3em] uppercase mb-2">VICD</h1>
-          <p className="text-gray-400 text-sm">Espace Client — Suivi VIC en temps réel</p>
+          <p className="text-gray-400 text-sm">Espace Client — Suivi de votre trajet en temps réel</p>
         </div>
 
         <div className="bg-zinc-950 border border-white/10 p-8 rounded-sm">

@@ -78,6 +78,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Coordonnées invalides" }, { status: 400 });
   }
 
+  if (heading != null && (typeof heading !== "number" || !Number.isFinite(heading) || heading < 0 || heading >= 360)) {
+    return NextResponse.json({ error: "Cap invalide" }, { status: 400 });
+  }
+
+  if (speed != null && (typeof speed !== "number" || !Number.isFinite(speed) || speed < 0 || speed > 400)) {
+    return NextResponse.json({ error: "Vitesse invalide" }, { status: 400 });
+  }
+
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
