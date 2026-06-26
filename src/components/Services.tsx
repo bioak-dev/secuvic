@@ -1,5 +1,5 @@
 import { MapPin, Star, ShieldCheck, UserCheck, Eye, ScanSearch, Clock } from "lucide-react";
-import { SERVICE_NAME } from "@/lib/company";
+import { Brand } from "@/components/Brand";
 
 const features = [
   {
@@ -66,7 +66,7 @@ export function Services() {
           </div>
           <div className="lg:col-span-9">
             <h2 className="font-serif text-3xl md:text-5xl leading-[1.15] max-w-3xl">
-              {SERVICE_NAME} allie le raffinement du transport de luxe à une exigence de
+              <Brand /> allie le raffinement du transport de luxe à une exigence de
               sécurité sans compromis.
             </h2>
             <p className="mt-8 max-w-2xl text-ink-soft font-light text-lg leading-relaxed">
@@ -113,7 +113,7 @@ export function Services() {
               <span className="italic text-champagne-soft">d&apos;experts</span>
             </h3>
             <p className="mt-7 text-white/60 font-light leading-relaxed max-w-md">
-              Au-delà du confort, {SERVICE_NAME} place la sécurité au centre de chaque mission.
+              Au-delà du confort, <Brand /> place la sécurité au centre de chaque mission.
               De la planification de l&apos;itinéraire à la prise en charge, chaque détail est
               anticipé pour la tranquillité de vos passagers.
             </p>

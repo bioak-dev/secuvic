@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { faqItems } from "@/lib/faq";
-import { SERVICE_NAME } from "@/lib/company";
+import { Brand, withBrand } from "@/components/Brand";
 import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_LINK } from "@/lib/contact";
 
 export function Faq() {
@@ -11,7 +11,7 @@ export function Faq() {
           <div className="lg:col-span-4">
             <span className="eyebrow">Questions fréquentes</span>
             <h2 className="font-serif text-3xl md:text-4xl mt-6 leading-tight">
-              Tout savoir sur <span className="italic">{SERVICE_NAME}</span>
+              Tout savoir sur <Brand />
             </h2>
             <p className="mt-6 text-ink-soft font-light leading-relaxed">
               Zones d&apos;intervention, réservation, confidentialité et services premium.
@@ -29,13 +29,13 @@ export function Faq() {
               {faqItems.map((item) => (
                 <details key={item.question} className="group border-b border-line">
                   <summary className="cursor-pointer list-none py-6 flex items-start justify-between gap-6 marker:content-none [&::-webkit-details-marker]:hidden">
-                    <span className="font-serif text-lg md:text-xl pr-4">{item.question}</span>
+                    <span className="font-serif text-lg md:text-xl pr-4">{withBrand(item.question)}</span>
                     <span className="text-champagne text-xl font-light shrink-0 mt-1 group-open:rotate-45 transition-transform duration-300">
                       +
                     </span>
                   </summary>
                   <p className="pb-7 -mt-1 text-ink-soft text-sm font-light leading-relaxed max-w-2xl">
-                    {item.answer}
+                    {withBrand(item.answer)}
                   </p>
                 </details>
               ))}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/client";
+import { Brand } from "@/components/Brand";
 import { Shield, Eye } from "lucide-react";
 
 const DEMO_ENABLED = process.env.NEXT_PUBLIC_ALLOW_DEMO_MODE === "true";
@@ -81,7 +82,7 @@ export default function ClientLoginPage() {
 
           {!SUPABASE_CONFIGURED && !DEMO_ENABLED && (
             <p className="text-amber-400/90 text-sm mb-6 leading-relaxed">
-              Espace client en cours d&apos;activation. Contactez VICD pour accéder au suivi de vos invités VIC.
+              Espace client en cours d&apos;activation. Contactez <Brand /> pour accéder au suivi de vos invités VIC.
             </p>
           )}
 

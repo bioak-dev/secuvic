@@ -10,8 +10,8 @@ import {
   COMPANY_NAME,
   COMPANY_SIREN,
   COMPANY_SIRET,
-  SERVICE_NAME,
 } from "@/lib/company";
+import { Brand } from "@/components/Brand";
 import { siteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -44,7 +44,7 @@ export default function MentionsLegalesPage() {
               APE : {COMPANY_APE}
             </p>
             <p className="mt-3">
-              {SERVICE_NAME} est un service de {COMPANY_NAME} ({COMPANY_LEGAL_NAME}).<br />
+              <Brand /> est un service de {COMPANY_NAME} ({COMPANY_LEGAL_NAME}).<br />
               Site : secuvic.com<br />
               Email : contact@secuvic.com<br />
               Téléphone : 06 65 78 30 65
@@ -54,7 +54,7 @@ export default function MentionsLegalesPage() {
           <section>
             <h2 className="text-champagne uppercase tracking-[0.2em] text-[0.7rem] mb-3">Activité</h2>
             <p>
-              Transport de personnes à titre onéreux (VTC). {SERVICE_NAME}, service de {COMPANY_NAME},
+              Transport de personnes à titre onéreux (VTC). <Brand />, service de {COMPANY_NAME},
               propose des prestations de mise à disposition et de transfert en Mercedes Classe V. La coordination
               avec des agents de protection agréés (CNAPS) est assurée via des partenaires
               certifiés, sur demande.
@@ -80,7 +80,7 @@ export default function MentionsLegalesPage() {
             <h2 className="text-champagne uppercase tracking-[0.2em] text-[0.7rem] mb-3">Marques tierces</h2>
             <p>
               Les noms d&apos;événements mentionnés (Festival de Cannes, Grand Prix de Monaco, etc.)
-              appartiennent à leurs propriétaires respectifs. {SERVICE_NAME} et {COMPANY_NAME} ne sont pas affiliés à ces
+              appartiennent à leurs propriétaires respectifs. <Brand /> et {COMPANY_NAME} ne sont pas affiliés à ces
               événements sauf mention contraire.
             </p>
           </section>

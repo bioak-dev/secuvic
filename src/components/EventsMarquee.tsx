@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { COMPANY_NAME, SERVICE_NAME } from "@/lib/company";
+import { COMPANY_NAME } from "@/lib/company";
+import { Brand } from "@/components/Brand";
 
 const events = [
   { name: "Festival de Cannes", logo: "/logos/events/festival-cannes.svg", city: "Cannes" },
@@ -64,7 +65,7 @@ export function EventsMarquee() {
       </div>
 
       <p className="text-white/25 text-[0.7rem] text-center mt-12 px-6">
-        Marques citées appartiennent à leurs propriétaires. {SERVICE_NAME} et {COMPANY_NAME} n&apos;y sont pas affiliés.
+        Marques citées appartiennent à leurs propriétaires. <Brand /> et {COMPANY_NAME} n&apos;y sont pas affiliés.
       </p>
     </section>
   );

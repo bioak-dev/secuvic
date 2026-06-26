@@ -5,8 +5,8 @@ import {
   COMPANY_EVTC,
   COMPANY_LEGAL_NAME,
   COMPANY_SIRET,
-  SERVICE_NAME,
 } from "@/lib/company";
+import { Brand } from "@/components/Brand";
 import { siteUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function PolitiqueConfidentialitePage() {
           <section>
             <h2 className="text-champagne uppercase tracking-[0.2em] text-[0.7rem] mb-3">Responsable du traitement</h2>
             <p>
-              {COMPANY_LEGAL_NAME} — {SERVICE_NAME}<br />
+              {COMPANY_LEGAL_NAME} — <Brand /><br />
               {COMPANY_ADDRESS}<br />
               SIRET : {COMPANY_SIRET} — N° EVTC : {COMPANY_EVTC}<br />
               contact@secuvic.com
