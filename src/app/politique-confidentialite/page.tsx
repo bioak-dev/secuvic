@@ -33,7 +33,7 @@ export default function PolitiqueConfidentialitePage() {
               {COMPANY_LEGAL_NAME} — <Brand /><br />
               {COMPANY_ADDRESS}<br />
               SIRET : {COMPANY_SIRET} — N° EVTC : {COMPANY_EVTC}<br />
-              contact@secuvic.com
+              contact@vicd.fr
             </p>
           </section>
 
@@ -75,7 +75,7 @@ export default function PolitiqueConfidentialitePage() {
             <h2 className="text-champagne uppercase tracking-[0.2em] text-[0.7rem] mb-3">Vos droits</h2>
             <p>
               Conformément au RGPD, vous disposez d&apos;un droit d&apos;accès, de rectification,
-              de suppression, de limitation et d&apos;opposition. Contact : contact@secuvic.com.
+              de suppression, de limitation et d&apos;opposition. Contact : contact@vicd.fr.
               Réclamation possible auprès de la CNIL (cnil.fr).
             </p>
           </section>

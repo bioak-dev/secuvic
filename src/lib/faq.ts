@@ -35,7 +35,7 @@ export const faqItems: FaqItem[] = [
   },
   {
     question: "Comment réserver un chauffeur privé VICD ?",
-    answer: `Vous pouvez réserver via le formulaire en ligne sur secuvic.com, par téléphone au ${CONTACT_PHONE_DISPLAY} ou par WhatsApp. Indiquez la date, le lieu, le type de prestation et vos besoins spécifiques pour recevoir une proposition personnalisée.`,
+    answer: `Vous pouvez réserver via le formulaire en ligne sur vicd.fr, par téléphone au ${CONTACT_PHONE_DISPLAY} ou par WhatsApp. Indiquez la date, le lieu, le type de prestation et vos besoins spécifiques pour recevoir une proposition personnalisée.`,
   },
   {
     question: "Comment suivre mon transfert en temps réel ?",

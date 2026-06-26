@@ -3,7 +3,7 @@ import { COMPANY_LEGAL_NAME, COMPANY_NAME, SERVICE_NAME } from "./company";
 import { CONTACT_PHONE_DISPLAY } from "./contact";
 import { buildFaqJsonLd } from "./faq";
 
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://secuvic.vercel.app";
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://vicd.fr";
 
 export const siteDescription =
   `${SERVICE_NAME} — chauffeur privé Mercedes Classe V par ${COMPANY_NAME}. Transport VIC à Cannes, Monaco et Paris avec application de suivi en temps réel. Mise à disposition, transferts et discrétion absolue.`;
