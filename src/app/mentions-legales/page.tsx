@@ -47,7 +47,7 @@ export default function MentionsLegalesPage() {
               <Brand /> est un service de {COMPANY_NAME} ({COMPANY_LEGAL_NAME}).<br />
               Site : secuvic.com<br />
               Email : contact@secuvic.com<br />
-              Téléphone : 06 65 78 30 65
+              Téléphone : 07 65 78 30 65
             </p>
           </section>
 
