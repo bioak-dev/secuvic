@@ -29,7 +29,7 @@ export function Faq() {
               {faqItems.map((item) => (
                 <details key={item.question} className="group border-b border-line">
                   <summary className="cursor-pointer list-none py-6 flex items-start justify-between gap-6 marker:content-none [&::-webkit-details-marker]:hidden">
-                    <span className="font-serif text-lg md:text-xl pr-4">{withBrand(item.question)}</span>
+                    <span className="text-lg md:text-xl pr-4">{withBrand(item.question)}</span>
                     <span className="text-champagne text-xl font-light shrink-0 mt-1 group-open:rotate-45 transition-transform duration-300">
                       +
                     </span>
