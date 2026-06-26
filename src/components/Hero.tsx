@@ -28,7 +28,7 @@ export function Hero() {
         <h1 className="fade-up delay-2 font-serif text-[2.6rem] leading-[1.05] md:text-7xl lg:text-[5.2rem] max-w-4xl">
           L&apos;art du voyage
           <br />
-          <span className="italic text-white/90">pour invités VIP &amp; VIC</span>
+          <span className="italic text-white/90">sur mesure</span>
         </h1>
 
         <p className="fade-up delay-3 mt-8 max-w-xl text-base md:text-lg font-light text-white/75 leading-relaxed">

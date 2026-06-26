@@ -113,7 +113,8 @@ export function Services() {
               <span className="italic text-champagne-soft">d&apos;experts</span>
             </h3>
             <p className="mt-7 text-white/60 font-light leading-relaxed max-w-md">
-              Au-delà du confort, <Brand /> place la sécurité au centre de chaque mission.
+              Au-delà du confort, <Brand />{" "}
+              place la sécurité au centre de chaque mission.
               De la planification de l&apos;itinéraire à la prise en charge, chaque détail est
               anticipé pour la tranquillité de vos passagers.
             </p>
