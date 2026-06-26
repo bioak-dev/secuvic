@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_LINK } from "@/lib/contact";
 import { SERVICE_NAME } from "@/lib/company";
 
 const navLinks = [
@@ -61,12 +60,6 @@ export function Navbar() {
 
         <div className="flex items-center gap-6">
           <a
-            href={CONTACT_PHONE_LINK}
-            className="hidden lg:inline link-underline text-[0.72rem] tracking-[0.12em] font-medium"
-          >
-            {CONTACT_PHONE_DISPLAY}
-          </a>
-          <a
             href="#booking"
             className={`hidden lg:inline px-6 py-2.5 text-[0.7rem] tracking-[0.18em] uppercase font-medium transition-colors ${
               solid
@@ -77,7 +70,7 @@ export function Navbar() {
             Réserver
           </a>
           <a href="#" className="leading-none" aria-label={`${SERVICE_NAME} — accueil`}>
-            <span className="wordmark text-2xl md:text-[1.7rem] font-medium">{SERVICE_NAME}</span>
+            <span className="wordmark text-3xl md:text-4xl lg:text-[2.6rem] font-medium">{SERVICE_NAME}</span>
           </a>
         </div>
       </div>
@@ -101,13 +94,6 @@ export function Navbar() {
                   {link.name}
                 </a>
               ))}
-              <a
-                href={CONTACT_PHONE_LINK}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-sm tracking-wider text-champagne"
-              >
-                {CONTACT_PHONE_DISPLAY}
-              </a>
               <a
                 href="#booking"
                 onClick={() => setIsMobileMenuOpen(false)}
