@@ -119,7 +119,7 @@ export function ClientDashboard({ isDemo }: ClientDashboardProps) {
       <header className="border-b border-white/10 bg-zinc-950 px-6 py-4 flex items-center justify-between shrink-0">
         <div>
           <h1 className="font-serif text-xl tracking-widest uppercase">
-            Secu<span className="text-gold-500">VIC</span>
+            <span className="tracking-[0.3em]">VICD</span>
             <span className="text-gray-500 text-sm normal-case tracking-normal ml-3">Espace Client</span>
           </h1>
           {isDemo && (

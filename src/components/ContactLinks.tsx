@@ -21,10 +21,10 @@ interface ContactLinksProps {
 export function ContactLinks({ variant = "buttons", className = "" }: ContactLinksProps) {
   if (variant === "compact") {
     return (
-      <div className={`flex items-center gap-4 ${className}`}>
+      <div className={`flex items-center gap-5 ${className}`}>
         <a
           href={CONTACT_PHONE_LINK}
-          className="flex items-center gap-2 text-sm text-gray-300 hover:text-gold-500 transition-colors"
+          className="flex items-center gap-2 text-sm text-ink-soft hover:text-champagne transition-colors"
         >
           <Phone size={16} />
           <span>{CONTACT_PHONE_DISPLAY}</span>
@@ -33,7 +33,7 @@ export function ContactLinks({ variant = "buttons", className = "" }: ContactLin
           href={CONTACT_WHATSAPP_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 text-sm text-gray-300 hover:text-[#25D366] transition-colors"
+          className="flex items-center gap-2 text-sm text-ink-soft hover:text-[#25D366] transition-colors"
         >
           <WhatsAppIcon className="w-4 h-4" />
           <span>WhatsApp</span>
@@ -46,18 +46,18 @@ export function ContactLinks({ variant = "buttons", className = "" }: ContactLin
     <div className={`flex flex-col sm:flex-row gap-3 ${className}`}>
       <a
         href={CONTACT_PHONE_LINK}
-        className="flex items-center justify-center gap-2 px-6 py-3 bg-transparent border border-gold-500/50 text-gold-500 uppercase tracking-wider text-sm font-medium hover:bg-gold-500/10 transition-colors rounded-sm"
+        className="flex items-center justify-center gap-2 px-6 py-3.5 border border-ink/20 text-ink uppercase tracking-[0.15em] text-[0.72rem] font-medium hover:bg-ink hover:text-ivory transition-colors"
       >
-        <Phone size={18} />
+        <Phone size={16} />
         {CONTACT_PHONE_DISPLAY}
       </a>
       <a
         href={CONTACT_WHATSAPP_LINK}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center gap-2 px-6 py-3 bg-[#25D366] text-white uppercase tracking-wider text-sm font-medium hover:bg-[#20bd5a] transition-colors rounded-sm"
+        className="flex items-center justify-center gap-2 px-6 py-3.5 border border-[#25D366] text-[#1a8a45] uppercase tracking-[0.15em] text-[0.72rem] font-medium hover:bg-[#25D366] hover:text-white transition-colors"
       >
-        <WhatsAppIcon className="w-5 h-5" />
+        <WhatsAppIcon className="w-4 h-4" />
         WhatsApp
       </a>
     </div>

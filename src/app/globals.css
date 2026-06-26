@@ -1,42 +1,85 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold-500: #d4af37;
-  --color-gold-400: #e5c158;
-  --color-gold-600: #aa8c2c;
-  
+  /* Marketing palette — éditorial clair façon Maison de luxe */
+  --color-ivory: #f6f4ef;
+  --color-ivory-dark: #ece8e0;
+  --color-ink: #1a1a18;
+  --color-ink-soft: #4a4a46;
+  --color-mute: #8a857c;
+  --color-line: #d8d3c8;
+  --color-champagne: #9c7c4a;
+  --color-champagne-soft: #b89a6a;
+
+  /* Tokens conservés pour l'espace client (thème sombre) */
+  --color-gold-500: #c9a24b;
+  --color-gold-400: #d9b766;
+  --color-gold-600: #a8884f;
+
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
 }
 
 @layer base {
-  :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+  body {
+    background-color: #f6f4ef;
+    color: #1a1a18;
+    font-family: var(--font-inter), sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 
-  body {
-    background-color: #000000;
-    color: #ffffff;
-    font-family: var(--font-inter), sans-serif;
-  }
-  
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-playfair), serif;
+    font-weight: 400;
+  }
+
+  ::selection {
+    background: #1a1a18;
+    color: #f6f4ef;
   }
 }
 
-.glass-panel {
-  background: rgba(20, 20, 20, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* Libellé de section façon LVMH : petites capitales très espacées */
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-champagne);
+  font-weight: 500;
+}
+
+/* Lien souligné animé */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Wordmark VICD */
+.wordmark {
+  font-family: var(--font-playfair), serif;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 40s linear infinite;
+  animation: marquee-scroll 45s linear infinite;
 }
 
 .marquee-content {
@@ -45,53 +88,56 @@
 }
 
 @keyframes marquee-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-@keyframes hero-fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes hero-fade-in {
+@keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
+@keyframes reveal-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 1.4s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.15s; }
+.delay-2 { animation-delay: 0.35s; }
+.delay-3 { animation-delay: 0.55s; }
+.delay-4 { animation-delay: 0.75s; }
+.delay-5 { animation-delay: 1s; }
+
+/* Indicateur de défilement */
 @keyframes scroll-indicator {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(24px); }
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(22px); opacity: 1; }
 }
-
-.hero-fade-up {
-  opacity: 0;
-  animation: hero-fade-up 0.8s ease forwards;
-}
-
-.hero-fade-in {
-  opacity: 0;
-  animation: hero-fade-in 1s ease forwards;
-}
-
-.hero-delay-1 { animation-delay: 0.2s; }
-.hero-delay-2 { animation-delay: 0.4s; }
-.hero-delay-3 { animation-delay: 0.6s; }
-.hero-delay-4 { animation-delay: 0.8s; }
-.hero-delay-5 { animation-delay: 1.5s; }
-
 .scroll-indicator {
-  animation: scroll-indicator 2s linear infinite;
+  animation: scroll-indicator 2.4s ease-in-out infinite;
+}
+
+/* Zoom lent au survol des visuels */
+.img-zoom {
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .img-zoom {
+  transform: scale(1.06);
 }
 
 .leaflet-container {
@@ -122,4 +168,13 @@
   overflow: visible;
   clip: auto;
   white-space: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .fade-in, .scroll-indicator, .marquee-track, .img-zoom {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

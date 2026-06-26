@@ -1,84 +1,85 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Phone } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  CONTACT_PHONE_DISPLAY,
-  CONTACT_PHONE_LINK,
-  CONTACT_WHATSAPP_LINK,
-} from "@/lib/contact";
+import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_LINK } from "@/lib/contact";
+import { SERVICE_NAME } from "@/lib/company";
+
+const navLinks = [
+  { name: "La Maison", href: "#services" },
+  { name: "Le Véhicule", href: "#fleet" },
+  { name: "Destinations", href: "#destinations" },
+  { name: "FAQ", href: "#faq" },
+  { name: "Espace Client", href: "/client" },
+];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Accueil", href: "#" },
-    { name: "La Flotte", href: "#fleet" },
-    { name: "Destinations", href: "#destinations" },
-    { name: "Service VIC", href: "#services" },
-    { name: "FAQ", href: "#faq" },
-    { name: "Espace Client", href: "/client" },
-  ];
+  const solid = isScrolled || isMobileMenuOpen;
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-black/90 backdrop-blur-md py-4 border-b border-white/10" : "bg-transparent py-6"
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        solid
+          ? "bg-ivory/95 backdrop-blur-md border-b border-line py-4 text-ink"
+          : "bg-transparent py-7 text-white"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
-        <a href="#" className="flex flex-col leading-none">
-          <span className="font-serif text-xl tracking-widest uppercase font-semibold text-white">Secu<span className="text-gold-500">VIC</span></span>
-          <span className="text-[0.6rem] tracking-[0.25em] uppercase text-gold-500/80 mt-1">Sécurité &amp; Prestige</span>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between">
+        <a href="#" className="flex flex-col leading-none" aria-label={`${SERVICE_NAME} — accueil`}>
+          <span className="wordmark text-2xl md:text-[1.7rem] font-medium">{SERVICE_NAME}</span>
+          <span
+            className={`text-[0.55rem] tracking-[0.3em] uppercase mt-1.5 transition-colors ${
+              solid ? "text-mute" : "text-white/70"
+            }`}
+          >
+            Chauffeurs Privés
+          </span>
         </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-9">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm tracking-wide text-gray-300 hover:text-gold-500 transition-colors uppercase"
+              className="link-underline text-[0.72rem] tracking-[0.18em] uppercase font-medium"
             >
               {link.name}
             </a>
           ))}
+        </div>
+
+        <div className="hidden lg:flex items-center gap-6">
           <a
             href={CONTACT_PHONE_LINK}
-            className="hidden lg:flex items-center gap-2 text-sm text-gray-300 hover:text-gold-500 transition-colors"
+            className="link-underline text-[0.72rem] tracking-[0.12em] font-medium"
           >
-            <Phone size={16} />
             {CONTACT_PHONE_DISPLAY}
           </a>
           <a
-            href={CONTACT_WHATSAPP_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden lg:flex items-center gap-2 px-4 py-2 border border-[#25D366]/40 text-[#25D366] text-sm uppercase tracking-wide hover:bg-[#25D366]/10 transition-colors rounded-sm"
-          >
-            WhatsApp
-          </a>
-          <a
             href="#booking"
-            className="px-5 py-2.5 bg-gold-500 text-black text-sm uppercase tracking-wide font-medium hover:bg-gold-400 transition-colors rounded-sm"
+            className={`px-6 py-2.5 text-[0.7rem] tracking-[0.18em] uppercase font-medium transition-colors ${
+              solid
+                ? "bg-ink text-ivory hover:bg-champagne"
+                : "bg-white text-ink hover:bg-champagne hover:text-white"
+            }`}
           >
             Réserver
           </a>
         </div>
 
-        {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-white"
+          className="lg:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={isMobileMenuOpen}
@@ -87,22 +88,21 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Nav */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-black/95 backdrop-blur-lg border-b border-white/10 overflow-hidden"
+            className="lg:hidden bg-ivory border-t border-line overflow-hidden text-ink"
           >
-            <div className="px-6 py-6 flex flex-col gap-6">
+            <div className="px-6 py-8 flex flex-col gap-6">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg tracking-wide text-gray-300 hover:text-gold-500 transition-colors uppercase"
+                  className="font-serif text-xl"
                 >
                   {link.name}
                 </a>
@@ -110,24 +110,14 @@ export function Navbar() {
               <a
                 href={CONTACT_PHONE_LINK}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-3 text-lg text-gold-500"
+                className="text-sm tracking-wider text-champagne"
               >
-                <Phone size={20} />
                 {CONTACT_PHONE_DISPLAY}
-              </a>
-              <a
-                href={CONTACT_WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-center px-5 py-3 border border-[#25D366]/40 text-[#25D366] text-sm uppercase tracking-wide font-medium hover:bg-[#25D366]/10 transition-colors rounded-sm"
-              >
-                WhatsApp
               </a>
               <a
                 href="#booking"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-center px-5 py-3 bg-gold-500 text-black text-sm uppercase tracking-wide font-medium hover:bg-gold-400 transition-colors rounded-sm mt-4"
+                className="w-full text-center px-5 py-4 bg-ink text-ivory text-xs uppercase tracking-[0.2em]"
               >
                 Réserver un chauffeur
               </a>

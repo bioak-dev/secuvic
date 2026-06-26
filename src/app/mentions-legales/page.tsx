@@ -17,23 +17,23 @@ import { siteUrl } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Mentions légales",
   description:
-    "Mentions légales du site SecuVIC — service chauffeur privé de DRIVE&YOU. SIRET, EVTC, adresse et informations juridiques.",
+    "Mentions légales du site VICD — service chauffeur privé de DRIVE&YOU. SIRET, EVTC, adresse et informations juridiques.",
   alternates: { canonical: `${siteUrl}/mentions-legales` },
   robots: { index: true, follow: true },
 };
 
 export default function MentionsLegalesPage() {
   return (
-    <main className="min-h-screen bg-black text-white py-24 px-6">
+    <main className="min-h-screen bg-ivory text-ink pt-32 pb-24 px-6">
       <div className="max-w-3xl mx-auto">
-        <Link href="/" className="text-gold-500 text-sm hover:underline mb-8 inline-block">
+        <Link href="/" className="link-underline text-champagne text-sm mb-8 inline-block">
           ← Retour au site
         </Link>
-        <h1 className="font-serif text-3xl mb-8">Mentions légales</h1>
+        <h1 className="font-serif text-4xl mb-10">Mentions légales</h1>
 
-        <div className="space-y-6 text-gray-300 leading-relaxed text-sm">
+        <div className="space-y-8 text-ink-soft leading-relaxed text-sm font-light">
           <section>
-            <h2 className="text-gold-500 uppercase tracking-wider text-xs mb-3">Éditeur du site</h2>
+            <h2 className="text-champagne uppercase tracking-[0.2em] text-[0.7rem] mb-3">Éditeur du site</h2>
             <p>
               {COMPANY_LEGAL_NAME} — {COMPANY_LEGAL_FORM}<br />
               Entreprise active depuis le {COMPANY_ACTIVE_SINCE}<br />
@@ -52,7 +52,7 @@ export default function MentionsLegalesPage() {
           </section>
 
           <section>
-            <h2 className="text-gold-500 uppercase tracking-wider text-xs mb-3">Activité</h2>
+            <h2 className="text-champagne uppercase tracking-[0.2em] text-[0.7rem] mb-3">Activité</h2>
             <p>
               Transport de personnes à titre onéreux (VTC). {SERVICE_NAME}, service de {COMPANY_NAME},
               propose des prestations de mise à disposition et de transfert en Mercedes Classe V. La coordination
@@ -62,14 +62,14 @@ export default function MentionsLegalesPage() {
           </section>
 
           <section>
-            <h2 className="text-gold-500 uppercase tracking-wider text-xs mb-3">Hébergement</h2>
+            <h2 className="text-champagne uppercase tracking-[0.2em] text-[0.7rem] mb-3">Hébergement</h2>
             <p>
               Vercel Inc. — 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.
             </p>
           </section>
 
           <section>
-            <h2 className="text-gold-500 uppercase tracking-wider text-xs mb-3">Propriété intellectuelle</h2>
+            <h2 className="text-champagne uppercase tracking-[0.2em] text-[0.7rem] mb-3">Propriété intellectuelle</h2>
             <p>
               L&apos;ensemble du contenu de ce site (textes, visuels, logo) est protégé par le droit
               d&apos;auteur. Toute reproduction est interdite sans autorisation écrite.
@@ -77,7 +77,7 @@ export default function MentionsLegalesPage() {
           </section>
 
           <section>
-            <h2 className="text-gold-500 uppercase tracking-wider text-xs mb-3">Marques tierces</h2>
+            <h2 className="text-champagne uppercase tracking-[0.2em] text-[0.7rem] mb-3">Marques tierces</h2>
             <p>
               Les noms d&apos;événements mentionnés (Festival de Cannes, Grand Prix de Monaco, etc.)
               appartiennent à leurs propriétaires respectifs. {SERVICE_NAME} et {COMPANY_NAME} ne sont pas affiliés à ces

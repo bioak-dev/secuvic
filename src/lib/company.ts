@@ -1,7 +1,8 @@
 export const COMPANY_LEGAL_NAME = "DRIVE&YOU";
 export const COMPANY_NAME = "Drive&You";
-export const SERVICE_NAME = "SecuVIC";
-export const SERVICE_TAGLINE = "Sécurité & Prestige";
+export const SERVICE_NAME = "VICD";
+export const SERVICE_FULL_NAME = "Very Important Client Driver";
+export const SERVICE_TAGLINE = "Maison de Chauffeurs Privés";
 
 export const COMPANY_SIREN = "982 344 152";
 export const COMPANY_SIRET = "982 344 152 00011";

@@ -1,65 +1,61 @@
 import Image from "next/image";
-import { ChevronRight } from "lucide-react";
-import { ContactLinks } from "@/components/ContactLinks";
 import { SERVICE_NAME } from "@/lib/company";
 
 export function Hero() {
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen min-h-[640px] w-full flex items-end overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-v-class.jpg"
-          alt={`Chauffeur privé Mercedes Classe V — ${SERVICE_NAME} à Cannes, Monaco et Paris`}
+          alt={`Chauffeur privé ${SERVICE_NAME} — Mercedes Classe V à Cannes, Monaco et Paris`}
           fill
           priority
           fetchPriority="high"
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/60 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/40" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center flex flex-col items-center pt-20">
-        <div className="hero-fade-up hero-delay-1 flex items-center gap-3 mb-6">
-          <div className="h-[1px] w-12 bg-gold-500"></div>
-          <span className="text-gold-500 tracking-[0.2em] uppercase text-xs md:text-sm font-medium">
-            Service Premium
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 pb-24 md:pb-28 text-white">
+        <div className="fade-up delay-1 mb-7 flex items-center gap-4">
+          <span className="h-[1px] w-12 bg-champagne-soft" />
+          <span className="text-[0.7rem] tracking-[0.32em] uppercase text-white/80">
+            Chauffeur Privé · Service Premium
           </span>
-          <div className="h-[1px] w-12 bg-gold-500"></div>
         </div>
 
-        <h1 className="hero-fade-up hero-delay-2 text-3xl md:text-5xl lg:text-6xl font-serif text-white mb-4 leading-tight">
-          Chauffeur Privé VIP &amp; VIC <br />
-          <span className="italic text-gold-500/90">Cannes · Monaco · Paris</span>
+        <h1 className="fade-up delay-2 font-serif text-[2.6rem] leading-[1.05] md:text-7xl lg:text-[5.2rem] max-w-4xl">
+          L&apos;art du voyage
+          <br />
+          <span className="italic text-white/90">pour invités VIP &amp; VIC</span>
         </h1>
 
-        <p className="hero-fade-up hero-delay-3 max-w-2xl text-gray-300 text-lg md:text-xl font-light mb-10">
-          Mise à disposition, transferts et sécurité sur mesure.
+        <p className="fade-up delay-3 mt-8 max-w-xl text-base md:text-lg font-light text-white/75 leading-relaxed">
+          Mise à disposition, transferts et sécurité sur mesure à Cannes, Monaco et Paris.
+          Une Maison de chauffeurs privés au service de l&apos;exception.
         </p>
 
-        <div className="hero-fade-up hero-delay-4 flex flex-col items-center gap-4">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="#booking"
-              className="flex items-center justify-center gap-2 px-8 py-4 bg-gold-500 text-black uppercase tracking-wider font-medium hover:bg-gold-400 transition-colors rounded-sm"
-            >
-              Réserver maintenant <ChevronRight size={18} />
-            </a>
-            <a
-              href="#services"
-              className="flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-white/30 text-white uppercase tracking-wider font-medium hover:bg-white/10 transition-colors rounded-sm"
-            >
-              Découvrir nos services
-            </a>
-          </div>
-          <ContactLinks />
+        <div className="fade-up delay-4 mt-10 flex flex-col sm:flex-row gap-4">
+          <a
+            href="#booking"
+            className="px-9 py-4 bg-white text-ink text-[0.72rem] tracking-[0.22em] uppercase font-medium hover:bg-champagne hover:text-white transition-colors text-center"
+          >
+            Réserver un chauffeur
+          </a>
+          <a
+            href="#services"
+            className="px-9 py-4 border border-white/40 text-white text-[0.72rem] tracking-[0.22em] uppercase font-medium hover:bg-white/10 transition-colors text-center"
+          >
+            Découvrir la Maison
+          </a>
         </div>
       </div>
 
-      <div className="hero-fade-in hero-delay-5 absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
-        <span className="text-xs uppercase tracking-widest text-gray-400">Défiler</span>
-        <div className="w-[1px] h-12 bg-white/20 overflow-hidden relative">
-          <div className="scroll-indicator w-full h-1/2 bg-gold-500 absolute top-0" />
+      <div className="fade-in delay-5 absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2">
+        <span className="text-[0.6rem] uppercase tracking-[0.3em] text-white/50">Défiler</span>
+        <div className="w-[1px] h-10 bg-white/20 relative overflow-hidden">
+          <span className="scroll-indicator block w-full h-1/2 bg-champagne-soft absolute top-0" />
         </div>
       </div>
     </section>

@@ -1,61 +1,57 @@
 import Image from "next/image";
 import { Users, Briefcase, Wifi, Coffee } from "lucide-react";
 
+const specs = [
+  { icon: Users, label: "Jusqu'à 7 passagers" },
+  { icon: Briefcase, label: "Large espace bagages" },
+  { icon: Wifi, label: "Wi-Fi haut débit" },
+  { icon: Coffee, label: "Rafraîchissements" },
+];
+
 export function Fleet() {
   return (
-    <section id="fleet" className="py-24 bg-black relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-zinc-900/20 skew-x-12 translate-x-32 z-0"></div>
+    <section id="fleet" className="bg-white">
+      <div className="grid lg:grid-cols-2">
+        <div className="relative h-[60vh] lg:h-auto min-h-[420px] overflow-hidden group">
+          <Image
+            src="/images/exterior-v-class.jpg"
+            alt="Mercedes Classe V noir — chauffeur privé VICD"
+            fill
+            loading="lazy"
+            className="object-cover img-zoom"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
-          <div className="w-full lg:w-1/2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-[1px] w-8 bg-gold-500"></div>
-              <span className="text-gold-500 tracking-[0.2em] uppercase text-xs font-medium">La Flotte</span>
-            </div>
-            <h2 className="text-3xl md:text-5xl font-serif mb-6 leading-tight">
-              Mercedes <br /><span className="italic text-gray-300">Classe V Noir</span>
+        <div className="flex items-center px-6 lg:px-16 py-20 lg:py-28">
+          <div className="max-w-md">
+            <span className="eyebrow">Le Véhicule</span>
+            <h2 className="font-serif text-4xl md:text-5xl mt-6 leading-tight">
+              Mercedes <span className="italic">Classe V Noir</span>
             </h2>
-            <p className="text-gray-400 font-light text-lg mb-8">
-              L&apos;excellence de l&apos;espace et du raffinement. Le Mercedes Classe V est le choix par excellence pour le transport de petits groupes VIC, offrant un confort inégalé digne d&apos;un salon VIP mobile.
+            <p className="mt-7 text-ink-soft font-light text-lg leading-relaxed">
+              L&apos;excellence de l&apos;espace et du raffinement. Un salon mobile pensé pour le
+              transport de petits groupes VIC, offrant un confort sans équivalent.
             </p>
 
-            <div className="grid grid-cols-2 gap-6 mb-10">
-              <div className="flex items-center gap-3">
-                <Users className="w-5 h-5 text-gold-500" />
-                <span className="text-gray-300 text-sm">Jusqu&apos;à 7 passagers</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Briefcase className="w-5 h-5 text-gold-500" />
-                <span className="text-gray-300 text-sm">Large espace bagages</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Wifi className="w-5 h-5 text-gold-500" />
-                <span className="text-gray-300 text-sm">Wi-Fi haut débit</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Coffee className="w-5 h-5 text-gold-500" />
-                <span className="text-gray-300 text-sm">Rafraîchissements</span>
-              </div>
+            <div className="mt-10 grid grid-cols-2 gap-x-8">
+              {specs.map((spec) => {
+                const Icon = spec.icon;
+                return (
+                  <div key={spec.label} className="flex items-center gap-3 border-t border-line py-4">
+                    <Icon className="w-4 h-4 text-champagne shrink-0" strokeWidth={1.25} />
+                    <span className="text-ink-soft text-sm font-light">{spec.label}</span>
+                  </div>
+                );
+              })}
             </div>
 
-            <a href="#booking" className="inline-block border-b border-gold-500 text-gold-500 pb-1 uppercase tracking-wider text-sm font-medium hover:text-white hover:border-white transition-colors">
+            <a
+              href="#booking"
+              className="link-underline inline-block mt-10 text-[0.72rem] tracking-[0.2em] uppercase text-ink"
+            >
               Demander ce véhicule
             </a>
-          </div>
-
-          <div className="w-full lg:w-1/2 relative">
-            <div className="aspect-[4/3] rounded-sm overflow-hidden relative border border-white/10">
-              <Image
-                src="/images/exterior-v-class.jpg"
-                alt="Mercedes Classe V noir — chauffeur privé SecuVIC"
-                fill
-                loading="lazy"
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-            </div>
           </div>
         </div>
       </div>

@@ -19,7 +19,8 @@ export const siteKeywords = [
   "transfert aéroport Nice",
   "chauffeur Festival Cannes",
   "Grand Prix Monaco chauffeur",
-  "SecuVIC",
+  "VICD",
+  "VICD chauffeur",
   "Drive&You",
   COMPANY_LEGAL_NAME,
 ];
@@ -71,8 +72,8 @@ export const defaultMetadata: Metadata = {
     },
   },
   icons: {
-    icon: "/images/logo-secuvic.png",
-    apple: "/images/logo-secuvic.png",
+    icon: "/images/logo-vicd.png",
+    apple: "/images/logo-vicd.png",
   },
   category: "transport",
 };
@@ -96,7 +97,7 @@ export function buildLocalBusinessJsonLd() {
         name: COMPANY_LEGAL_NAME,
         alternateName: COMPANY_NAME,
         url: siteUrl,
-        logo: `${siteUrl}/images/logo-secuvic.png`,
+        logo: `${siteUrl}/images/logo-vicd.png`,
         address: {
           "@type": "PostalAddress",
           streetAddress: "6 avenue du Président Kennedy",

@@ -23,7 +23,7 @@ export default function ClientLoginPage() {
     setError("");
 
     if (!SUPABASE_CONFIGURED) {
-      setError("Connexion indisponible. Utilisez la démo ci-dessous ou contactez SecuVIC.");
+      setError("Connexion indisponible. Utilisez la démo ci-dessous ou contactez VICD.");
       setLoading(false);
       return;
     }
@@ -57,15 +57,13 @@ export default function ClientLoginPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-10">
           <Image
-            src="/images/logo-secuvic.png"
-            alt="SecuVIC"
+            src="/images/logo-vicd.png"
+            alt="VICD"
             width={64}
             height={64}
-            className="w-16 h-16 mx-auto mb-4"
+            className="w-16 h-16 mx-auto mb-4 bg-white rounded-sm p-1"
           />
-          <h1 className="font-serif text-2xl tracking-widest uppercase mb-2">
-            Secu<span className="text-gold-500">VIC</span>
-          </h1>
+          <h1 className="font-serif text-3xl tracking-[0.3em] uppercase mb-2">VICD</h1>
           <p className="text-gray-400 text-sm">Espace Client — Suivi VIC en temps réel</p>
         </div>
 
@@ -83,7 +81,7 @@ export default function ClientLoginPage() {
 
           {!SUPABASE_CONFIGURED && !DEMO_ENABLED && (
             <p className="text-amber-400/90 text-sm mb-6 leading-relaxed">
-              Espace client en cours d&apos;activation. Contactez SecuVIC pour accéder au suivi de vos invités VIC.
+              Espace client en cours d&apos;activation. Contactez VICD pour accéder au suivi de vos invités VIC.
             </p>
           )}
 

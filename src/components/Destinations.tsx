@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 
 const destinations = [
   {
@@ -27,45 +26,36 @@ const destinations = [
 
 export function Destinations() {
   return (
-    <section id="destinations" className="py-24 bg-black">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="h-[1px] w-12 bg-gold-500"></div>
-            <span className="text-gold-500 tracking-[0.2em] uppercase text-xs font-medium">Nos Destinations</span>
-            <div className="h-[1px] w-12 bg-gold-500"></div>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-serif mb-6">
-            Le Triangle d&apos;Or du <span className="text-gold-500 italic">Luxe</span>
+    <section id="destinations" className="bg-ivory py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="max-w-2xl mb-16">
+          <span className="eyebrow">Destinations</span>
+          <h2 className="font-serif text-3xl md:text-5xl mt-6 leading-tight">
+            Le Triangle d&apos;Or <span className="italic">du Luxe</span>
           </h2>
-          <p className="text-gray-400 font-light text-lg">
-            Présents sur les places les plus prestigieuses, nous accompagnons vos invités VIC lors des plus grands événements.
+          <p className="mt-6 text-ink-soft font-light text-lg leading-relaxed">
+            Présents sur les places les plus prestigieuses, nous accompagnons vos invités VIC lors
+            des plus grands événements internationaux.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
           {destinations.map((dest) => (
-            <article
-              key={dest.name}
-              className="group relative h-[460px] overflow-hidden rounded-sm border border-white/10"
-            >
-              <Image
-                src={dest.image}
-                alt={`Chauffeur privé ${dest.name} — ${dest.tagline}`}
-                fill
-                loading="lazy"
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <span className="text-gold-500 text-xs uppercase tracking-[0.2em] mb-2 block">{dest.tagline}</span>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-3xl font-serif text-white">{dest.name}</h3>
-                  <ArrowUpRight className="w-6 h-6 text-gold-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                <p className="text-gray-300 text-sm leading-relaxed opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-40 transition-all duration-500 overflow-hidden">
+            <article key={dest.name} className="group">
+              <div className="relative aspect-[3/4] overflow-hidden">
+                <Image
+                  src={dest.image}
+                  alt={`Chauffeur privé ${dest.name} — ${dest.tagline}`}
+                  fill
+                  loading="lazy"
+                  className="object-cover img-zoom"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+              <div className="pt-6">
+                <span className="eyebrow">{dest.tagline}</span>
+                <h3 className="font-serif text-3xl mt-3 mb-3">{dest.name}</h3>
+                <p className="text-ink-soft text-sm font-light leading-relaxed">
                   {dest.description}
                 </p>
               </div>
